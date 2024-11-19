@@ -2,16 +2,19 @@
 
 import Loading from "@/components/Loading";
 import { useGetProduct } from "@/hooks/useGetProduct";
+import { addItem } from "@/redux/features/cart/cartSlice";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
   const { data, isLoading } = useGetProduct(productId as string);
   const [quantity, setQuantity] = useState<number>(1);
+  const dispatch = useDispatch();
 
   if (isLoading) {
     return <Loading />;
@@ -96,7 +99,19 @@ const ProductDetailsPage = () => {
               </button>
             </div>
           </div>
-          <button className="btn btn-primary">Add to Cart</button>
+          <button
+            onClick={() =>
+              dispatch(
+                addItem({
+                  ...data.product,
+                  quantity,
+                })
+              )
+            }
+            className="btn btn-primary"
+          >
+            Add to Cart
+          </button>
         </div>
       </section>
     </main>

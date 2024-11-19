@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import ReduxStoreProvider from "@/providers/ReduxStoreProvider";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -21,26 +22,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReactQueryClientProvider>
-      <html lang="en" data-theme="lofi">
-        <body
-          className={cn(
-            spaceGrotesk.className,
-            "antialiased overflow-x-hidden"
-          )}
-        >
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-            toastOptions={{
-              duration: 5000,
-            }}
-          />
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
-      </html>
-    </ReactQueryClientProvider>
+    <ReduxStoreProvider>
+      <ReactQueryClientProvider>
+        <html lang="en" data-theme="lofi">
+          <body
+            className={cn(
+              spaceGrotesk.className,
+              "antialiased overflow-x-hidden"
+            )}
+          >
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+              toastOptions={{
+                duration: 5000,
+              }}
+            />
+            <Navbar />
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </ReactQueryClientProvider>
+    </ReduxStoreProvider>
   );
 }
