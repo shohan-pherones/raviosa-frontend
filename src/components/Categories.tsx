@@ -18,7 +18,7 @@ const Categories = () => {
   }
 
   return (
-    <section className="wrapper">
+    <section className="wrapper min-h-screen">
       <SectionTitle title="Categories" />
       <div className="grid-container">
         {data.categories.map((category) => (

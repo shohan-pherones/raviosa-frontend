@@ -24,6 +24,11 @@ export interface ICategoriesResponse {
   categories: ICategory[];
 }
 
+export interface ICategoryResponse {
+  message: string;
+  category: ICategory;
+}
+
 export interface IError {
   message: string;
 }
