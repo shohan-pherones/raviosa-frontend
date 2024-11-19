@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
@@ -19,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="lofi">
       <body className={cn(spaceGrotesk.className, "antialiased")}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
