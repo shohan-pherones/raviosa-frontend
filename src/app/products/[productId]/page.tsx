@@ -1,8 +1,9 @@
 "use client";
 
-import Loading from "@/components/Loading";
-import { useGetProduct } from "@/hooks/useGetProduct";
-import { addItem } from "@/redux/features/cart/cartSlice";
+import Loading from "@/src/components/Loading";
+import { useGetProduct } from "@/src/hooks/useGetProduct";
+import { ICategory } from "@/src/interfaces";
+import { addItem } from "@/src/redux/features/cart/cartSlice";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { notFound, useParams } from "next/navigation";
@@ -59,7 +60,7 @@ const ProductDetailsPage = () => {
         <div className="flex flex-col gap-5 justify-center wrapper">
           <div className="flex justify-between gap-5 items-center">
             <div className="flex items-center gap-2">
-              {data.product.categories.map((category) => (
+              {data.product.categories.map((category: ICategory) => (
                 <div
                   key={category._id}
                   className="badge badge-primary badge-outline uppercase"

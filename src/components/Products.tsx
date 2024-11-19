@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces";
+import { IProduct } from "../interfaces";
 import Product from "./Product";
 import SectionTitle from "./SectionTitle";
 

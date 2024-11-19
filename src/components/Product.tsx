@@ -1,6 +1,6 @@
-import { IProduct } from "@/interfaces";
 import Image from "next/image";
 import Link from "next/link";
+import { ICategory, IProduct } from "../interfaces";
 
 interface ProductProps {
   product: IProduct;
@@ -21,7 +21,7 @@ const Product = ({ product }: ProductProps) => {
       </figure>
       <div className="card-body">
         <div className="flex items-center gap-2">
-          {product.categories.map((category) => (
+          {product.categories.map((category: ICategory) => (
             <div
               key={category._id}
               className="badge badge-primary badge-outline uppercase"

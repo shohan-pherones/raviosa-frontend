@@ -1,8 +1,8 @@
 "use client";
 
-import Loading from "@/components/Loading";
-import Products from "@/components/Products";
-import { useGetProducts } from "@/hooks/useGetProducts";
+import Loading from "@/src/components/Loading";
+import Products from "@/src/components/Products";
+import { useGetProducts } from "@/src/hooks/useGetProducts";
 import { notFound } from "next/navigation";
 
 const ProductsPage = () => {

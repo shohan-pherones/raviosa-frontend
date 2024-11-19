@@ -1,6 +1,13 @@
+"use client";
+
+import { ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Navbar = () => {
+  const items = useSelector((state: RootState) => state.cart.items);
+
   const navItems = (
     <>
       <li>
@@ -52,7 +59,13 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-5">
+        <Link href="/cart" className="relative">
+          <ShoppingBag />
+          <span className="absolute w-5 h-5 -left-2 -bottom-2 rounded-full bg-base-content text-neutral-content text-xs flex items-center justify-center">
+            {items.length}
+          </span>
+        </Link>
         <Link href="/sign-in" className="btn btn-primary">
           Sign In
         </Link>

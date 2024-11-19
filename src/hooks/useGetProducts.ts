@@ -1,8 +1,7 @@
-import { API_BASE_URL } from "@/constants";
-import { IProductsResponse } from "@/interfaces";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
-import { IError } from "./../interfaces/index";
+import { API_BASE_URL } from "../constants";
+import { IError, IProductsResponse } from "./../interfaces/index";
 
 export const useGetProducts = () => {
   const getAllProducts = async (): Promise<IProductsResponse> => {
