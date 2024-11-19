@@ -19,6 +19,11 @@ export interface IProductsResponse {
   products: IProduct[];
 }
 
+export interface ICategoriesResponse {
+  message: string;
+  categories: ICategory[];
+}
+
 export interface IError {
   message: string;
 }
