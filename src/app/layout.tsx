@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="lofi">
-      <body className={cn(spaceGrotesk.className, "antialiased")}>
+      <body
+        className={cn(spaceGrotesk.className, "antialiased overflow-x-hidden")}
+      >
         <Navbar />
         {children}
         <Footer />
