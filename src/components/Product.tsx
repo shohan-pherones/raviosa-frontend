@@ -15,6 +15,7 @@ const Product = ({ product }: ProductProps) => {
           alt={product.name}
           width={1280}
           height={720}
+          priority
           className="w-full h-full object-cover"
         />
       </figure>

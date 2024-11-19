@@ -19,14 +19,9 @@ export interface IProductsResponse {
   products: IProduct[];
 }
 
-export interface ICategoriesResponse {
+export interface IProductResponse {
   message: string;
-  categories: ICategory[];
-}
-
-export interface ICategoryResponse {
-  message: string;
-  category: ICategory;
+  product: IProduct;
 }
 
 export interface IError {

@@ -7,6 +7,11 @@ import { IError } from "./../interfaces/index";
 export const useGetProducts = () => {
   const getAllProducts = async (): Promise<IProductsResponse> => {
     const res = await fetch(`${API_BASE_URL}/products`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch");
+    }
+
     return res.json();
   };
 
