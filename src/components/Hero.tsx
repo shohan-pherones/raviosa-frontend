@@ -10,38 +10,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const heroItems = [
   {
     id: 1,
-    headline: "Unleash Your Inner Goddess",
+    headline: "Glow Like Never Before",
     description:
-      "Drape yourself in elegance and let every curve tell a story of desire. Your confidence deserves this embrace.",
-    image: "/images/hero-01.jpeg",
+      "Discover radiant skincare and makeup essentials designed to bring out your natural beauty and confidence.",
+    image: "/images/hero-01.jpg",
   },
   {
     id: 2,
-    headline: "Where Silk Meets Sin",
+    headline: "Where Beauty Meets Elegance",
     description:
-      "Slide into the allure of luxurious fabrics designed to ignite passion and turn every glance into a lingering gaze.",
-    image: "/images/hero-02.jpeg",
+      "Indulge in luxurious cosmetics crafted to enhance your features and define your unique style.",
+    image: "/images/hero-02.jpg",
   },
   {
     id: 3,
-    headline: "Sculpted for Seduction",
+    headline: "Your Skin Deserves the Best",
     description:
-      "Feel the sensuality of designs that caress your body, capturing hearts and commanding attention with every step.",
-    image: "/images/hero-03.jpeg",
+      "Pamper yourself with our curated collection of high-quality products for glowing, healthy skin.",
+    image: "/images/hero-03.jpg",
   },
   {
     id: 4,
-    headline: "Elegance Redefined",
+    headline: "Unveil Your True Beauty",
     description:
-      "Step into a world where sophistication and sensuality collide, creating moments that linger in memory.",
-    image: "/images/hero-04.jpeg",
+      "Transform your everyday look with our premium beauty and skincare collections, tailored for every occasion.",
+    image: "/images/hero-04.jpg",
   },
   {
     id: 5,
-    headline: "Lust in Every Stitch",
+    headline: "Timeless Beauty Awaits",
     description:
-      "Experience the magic of designs crafted to tease and entice, leaving an unforgettable impression wherever you go.",
-    image: "/images/hero-05.jpeg",
+      "Experience the perfect blend of science and artistry with cosmetics designed to inspire and empower.",
+    image: "/images/hero-05.jpg",
   },
 ];
 
@@ -76,7 +76,7 @@ const Hero = () => {
                   <h1 className="mb-5 text-5xl font-bold">{item.headline}</h1>
                   <p className="mb-5">{item.description}</p>
                   <Link href="/products" className="btn btn-primary">
-                    Explore Classy Apparel
+                    Discover Premium Cosmetics
                   </Link>
                 </div>
               </div>

@@ -6,6 +6,7 @@ import { RootState } from "@/src/redux/store";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartPage = () => {
@@ -13,11 +14,9 @@ const CartPage = () => {
     (state: RootState) => state.cart
   );
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  const handleCheckout = () => {
-    const orderItem = { items, subtotal, shippingCost, tax, totalPrice };
-    console.log(orderItem);
-  };
+  const handleCheckout = () => {};
 
   return (
     <main>
@@ -42,6 +41,9 @@ const CartPage = () => {
             <Link href="/products" className="btn btn-primary">
               Browse Products
             </Link>
+            <button onClick={() => router.back()} className="btn">
+              Go Back
+            </button>
             <Link href="/" className="btn">
               Back to Home
             </Link>
@@ -76,7 +78,7 @@ const CartPage = () => {
                               <Image
                                 src={
                                   item.images?.at(0) ||
-                                  "/images/product-placeholder.svg"
+                                  "/images/placeholder.svg"
                                 }
                                 alt={item.name}
                                 width={512}
@@ -112,6 +114,9 @@ const CartPage = () => {
               <Link href="/products" className="btn btn-primary">
                 Continue Shopping
               </Link>
+              <button onClick={() => router.back()} className="btn">
+                Go Back
+              </button>
               <button onClick={() => dispatch(clearCart())} className="btn">
                 Clear Cart
               </button>

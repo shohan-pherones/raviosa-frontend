@@ -7,7 +7,7 @@ import { addItem } from "@/src/redux/features/cart/cartSlice";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, useParams } from "next/navigation";
+import { notFound, useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ const ProductDetailsPage = () => {
   const { data, isLoading } = useGetProduct(productId as string);
   const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   if (isLoading) {
     return <Loading />;
@@ -49,9 +50,7 @@ const ProductDetailsPage = () => {
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2">
           <Image
-            src={
-              data.product.images?.at(0) || "/images/product-placeholder.svg"
-            }
+            src={data.product.images?.at(0) || "/images/placeholder.svg"}
             alt={data.product.name}
             width={1080}
             height={1920}
@@ -101,20 +100,25 @@ const ProductDetailsPage = () => {
               </button>
             </div>
           </div>
-          <Link
-            href="/cart"
-            onClick={() =>
-              dispatch(
-                addItem({
-                  ...data.product,
-                  quantity,
-                })
-              )
-            }
-            className="btn btn-primary"
-          >
-            Add to Cart
-          </Link>
+          <div className="grid grid-cols-2 gap-5 items-center">
+            <button className="btn" onClick={() => router.back()}>
+              Go Back
+            </button>
+            <Link
+              href="/cart"
+              onClick={() =>
+                dispatch(
+                  addItem({
+                    ...data.product,
+                    quantity,
+                  })
+                )
+              }
+              className="btn btn-primary"
+            >
+              Add to Cart
+            </Link>
+          </div>
           <p className="-mt-3 text-sm opacity-50">
             Please note, the quantity is fixed once the item is added to your
             cart. You can either proceed to checkout or continue shopping.

@@ -11,7 +11,7 @@ const NotFoundPage = () => {
       style={{
         backgroundImage: `
       linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-      url(/images/not-found.jpeg)
+      url(/images/not-found.jpg)
     `,
       }}
       className="h-[calc(100vh-4rem)] bg-center bg-cover flex items-center justify-center"

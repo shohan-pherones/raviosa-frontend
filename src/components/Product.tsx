@@ -11,7 +11,7 @@ const Product = ({ product }: ProductProps) => {
     <div className="card bg-base-100 w-full shadow">
       <figure className="w-full h-96">
         <Image
-          src={product?.images?.at(0) || "/images/product-placeholder.svg"}
+          src={product?.images?.at(0) || "/images/placeholder.svg"}
           alt={product.name}
           width={1280}
           height={720}

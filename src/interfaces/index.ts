@@ -27,3 +27,17 @@ export interface IProductResponse {
 export interface IError {
   message: string;
 }
+
+export interface ILoginOrRegistrationResponse {
+  message: string;
+  accessToken: string;
+}
+
+export interface IRegistrationData {
+  username: string;
+  name: string;
+  email: string;
+  password: string;
+  image?: string;
+  address?: string;
+}

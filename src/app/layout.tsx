@@ -11,9 +11,9 @@ import "./globals.css";
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Raviosa - Trendy Apparel & Fashion",
+  title: "Raviosa - Premium Cosmetics & Beauty",
   description:
-    "Discover the latest styles and premium collections at Raviosa, your go-to clothing shop for timeless and trendy fashion.",
+    "Explore Raviosa for luxurious cosmetics and skincare essentials. Elevate your beauty routine with our curated collection of timeless and trendy products.",
 };
 
 export default function RootLayout({
@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <ReduxStoreProvider>
             <Toaster
-              position="top-center"
+              position="bottom-right"
               reverseOrder={false}
               toastOptions={{
                 duration: 5000,
