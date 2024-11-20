@@ -38,6 +38,6 @@ export interface IRegistrationData {
   name: string;
   email: string;
   password: string;
-  image?: string;
-  address?: string;
+  image: string;
+  address: string;
 }

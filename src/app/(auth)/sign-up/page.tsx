@@ -1,27 +1,54 @@
 "use client";
 
+import { useRegistration } from "@/src/hooks/useRegistration";
 import { IRegistrationData } from "@/src/interfaces";
 import { registerSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<IRegistrationData>({
     resolver: zodResolver(registerSchema),
   });
+  const { mutate, isLoading } = useRegistration();
+  const router = useRouter();
 
   const onSubmit = (data: IRegistrationData) => {
-    console.log(data);
+    mutate(data, {
+      onSuccess: (response) => {
+        toast.success(response.message);
+        reset();
+        router.push("/");
+      },
+      onError: (err) => {
+        toast.error(err.message);
+      },
+    });
   };
 
   return (
     <main>
-      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <div className="xl:col-span-2 order-last md:order-first">Image</div>
+      <section className="grid grid-cols-1 md:grid-cols-2">
+        <div className="order-last md:order-first">
+          <Image
+            src="/images/registration.jpg"
+            alt="Registration"
+            width={1080}
+            height={1920}
+            priority
+            className="w-full h-full object-cover"
+          />
+        </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="wrapper flex flex-col gap-2 justify-center"
@@ -32,16 +59,16 @@ const SignUpPage = () => {
             faster checkouts, order tracking, and exclusive offers once
             you&apos;re signed up!
           </p>
-          <label htmlFor="username" className="form-control w-full max-w-xs">
+          <label htmlFor="username" className="form-control w-full">
             <div className="label">
-              <span className="label-text">Username *</span>
+              <span className="label-text">Username</span>
             </div>
             <input
               {...register("username")}
               type="text"
               id="username"
               placeholder="sarah_parker"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.username && (
               <div className="label">
@@ -51,16 +78,16 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
-          <label htmlFor="name" className="form-control w-full max-w-xs">
+          <label htmlFor="name" className="form-control w-full">
             <div className="label">
-              <span className="label-text">Full name *</span>
+              <span className="label-text">Fullname</span>
             </div>
             <input
               {...register("name")}
               type="text"
               id="name"
               placeholder="Sarah Parker"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.name && (
               <div className="label">
@@ -70,16 +97,16 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
-          <label htmlFor="email" className="form-control w-full max-w-xs">
+          <label htmlFor="email" className="form-control w-full">
             <div className="label">
-              <span className="label-text">Email address *</span>
+              <span className="label-text">Email address</span>
             </div>
             <input
               {...register("email")}
               type="email"
               id="email"
               placeholder="sarah@exampl.com"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.email && (
               <div className="label">
@@ -89,16 +116,16 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
-          <label htmlFor="password" className="form-control w-full max-w-xs">
+          <label htmlFor="password" className="form-control w-full">
             <div className="label">
-              <span className="label-text">Password *</span>
+              <span className="label-text">Password</span>
             </div>
             <input
               {...register("password")}
               type="password"
               id="password"
               placeholder="Type a strong password"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.password && (
               <div className="label">
@@ -108,7 +135,7 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
-          <label htmlFor="image" className="form-control w-full max-w-xs">
+          <label htmlFor="image" className="form-control w-full">
             <div className="label">
               <span className="label-text">Image</span>
             </div>
@@ -117,7 +144,7 @@ const SignUpPage = () => {
               type="text"
               id="image"
               placeholder="Paste your image url"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.image && (
               <div className="label">
@@ -127,7 +154,7 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
-          <label htmlFor="address" className="form-control w-full max-w-xs">
+          <label htmlFor="address" className="form-control w-full">
             <div className="label">
               <span className="label-text">Address</span>
             </div>
@@ -136,7 +163,7 @@ const SignUpPage = () => {
               type="text"
               id="address"
               placeholder="123 Main Street, NY"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full"
             />
             {errors.address && (
               <div className="label">
@@ -146,6 +173,26 @@ const SignUpPage = () => {
               </div>
             )}
           </label>
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="mt-3 btn btn-primary"
+          >
+            {isLoading ? (
+              <span className="flex items-center gap-2 justify-center">
+                <Loader2 className="animate-spin" />
+                Processing
+              </span>
+            ) : (
+              "Submit"
+            )}
+          </button>
+          <p className="mt-1">
+            Already have an account?{" "}
+            <Link href="/sign-in" className="link link-hover font-bold">
+              Login
+            </Link>
+          </p>
         </form>
       </section>
     </main>

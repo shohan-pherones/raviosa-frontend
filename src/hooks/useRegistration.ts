@@ -6,26 +6,27 @@ import {
   IRegistrationData,
 } from "./../interfaces/index";
 
-export const useRegistration = (registrationData?: IRegistrationData) => {
-  const makeRegistration = async (): Promise<ILoginOrRegistrationResponse> => {
+export const useRegistration = () => {
+  const makeRegistration = async (
+    registrationData: IRegistrationData
+  ): Promise<ILoginOrRegistrationResponse> => {
     const res = await fetch(`${API_BASE_URL}/users/register`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(registrationData),
     });
 
     if (!res.ok) {
-      throw new Error("Failed to register");
+      const errorResponse = await res.json();
+      throw new Error(errorResponse.message || "Failed to register");
     }
 
     return res.json();
   };
 
-  const { data, isLoading, isSuccess, error } = useMutation<
-    ILoginOrRegistrationResponse,
-    IError
-  >(makeRegistration);
-
-  console.log(data);
-
-  return { data, isLoading, isSuccess, error };
+  return useMutation<ILoginOrRegistrationResponse, IError, IRegistrationData>(
+    makeRegistration
+  );
 };
