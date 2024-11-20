@@ -2,6 +2,7 @@
 
 import { useRegistration } from "@/src/hooks/useRegistration";
 import { IRegistrationData } from "@/src/interfaces";
+import { login } from "@/src/redux/features/auth/authSlice";
 import { registerSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -10,6 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const SignUpPage = () => {
   const {
@@ -22,13 +24,15 @@ const SignUpPage = () => {
   });
   const { mutate, isLoading } = useRegistration();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onSubmit = (data: IRegistrationData) => {
     mutate(data, {
       onSuccess: (response) => {
-        toast.success(response.message);
+        dispatch(login(response));
         reset();
         router.push("/");
+        toast.success(response.message);
       },
       onError: (err) => {
         toast.error(err.message);
@@ -105,7 +109,7 @@ const SignUpPage = () => {
               {...register("email")}
               type="email"
               id="email"
-              placeholder="sarah@exampl.com"
+              placeholder="sarah@example.com"
               className="input input-bordered w-full"
             />
             {errors.email && (

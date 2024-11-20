@@ -41,3 +41,8 @@ export interface IRegistrationData {
   image: string;
   address: string;
 }
+
+export interface ILoginData {
+  email: string;
+  password: string;
+}
