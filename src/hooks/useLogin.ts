@@ -1,10 +1,6 @@
 import { useMutation } from "react-query";
 import { API_BASE_URL } from "../constants";
-import {
-  IError,
-  ILoginData,
-  ILoginOrRegistrationResponse,
-} from "../interfaces";
+import { ILoginData, ILoginOrRegistrationResponse } from "../interfaces";
 
 export const useLogin = () => {
   const makeLogin = async (
@@ -26,7 +22,7 @@ export const useLogin = () => {
     return res.json();
   };
 
-  return useMutation<ILoginOrRegistrationResponse, IError, ILoginData>(
+  return useMutation<ILoginOrRegistrationResponse, Error, ILoginData>(
     makeLogin
   );
 };

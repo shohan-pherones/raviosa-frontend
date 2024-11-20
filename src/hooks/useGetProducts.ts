@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { API_BASE_URL } from "../constants";
-import { IError, IProductsResponse } from "./../interfaces/index";
+import { IProductsResponse } from "./../interfaces/index";
 
 export const useGetProducts = () => {
   const getAllProducts = async (): Promise<IProductsResponse> => {
@@ -14,7 +14,7 @@ export const useGetProducts = () => {
     return res.json();
   };
 
-  const { data, isLoading, error } = useQuery<IProductsResponse, IError>(
+  const { data, isLoading, error } = useQuery<IProductsResponse, Error>(
     "fetchProducts",
     getAllProducts
   );

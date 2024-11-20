@@ -1,12 +1,16 @@
 "use client";
 
 import { ShoppingBag } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/features/auth/authSlice";
 import { RootState } from "../redux/store";
 
 const Navbar = () => {
   const items = useSelector((state: RootState) => state.cart.items);
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
 
   const navItems = (
     <>
@@ -47,7 +51,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100/90 backdrop-blur-lg rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {navItems}
           </ul>
@@ -60,15 +64,41 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end gap-5">
+        {user && (
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="avatar mt-2">
+              <div className="w-10 rounded-full">
+                <Image
+                  src={user.image}
+                  alt={user.name}
+                  width={512}
+                  height={512}
+                  priority
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100/90 backdrop-blur-lg rounded-box z-[1] mt-2 w-52 p-2 shadow"
+            >
+              <li>
+                <button onClick={() => dispatch(logout())}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        )}
         <Link href="/cart" className="relative">
           <ShoppingBag />
           <span className="absolute w-5 h-5 -left-2 -bottom-2 rounded-full bg-base-content text-neutral-content text-xs flex items-center justify-center">
             {items.length}
           </span>
         </Link>
-        <Link href="/sign-in" className="btn btn-primary">
-          Sign In
-        </Link>
+        {!user?.name && (
+          <Link href="/sign-in" className="btn btn-primary">
+            Sign In
+          </Link>
+        )}
       </div>
     </header>
   );

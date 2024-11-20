@@ -1,7 +1,6 @@
 import { useMutation } from "react-query";
 import { API_BASE_URL } from "../constants";
 import {
-  IError,
   ILoginOrRegistrationResponse,
   IRegistrationData,
 } from "./../interfaces/index";
@@ -26,7 +25,7 @@ export const useRegistration = () => {
     return res.json();
   };
 
-  return useMutation<ILoginOrRegistrationResponse, IError, IRegistrationData>(
+  return useMutation<ILoginOrRegistrationResponse, Error, IRegistrationData>(
     makeRegistration
   );
 };

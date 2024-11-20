@@ -2,7 +2,8 @@
 
 import { useRegistration } from "@/src/hooks/useRegistration";
 import { IRegistrationData } from "@/src/interfaces";
-import { login } from "@/src/redux/features/auth/authSlice";
+import { login, retrieveUser } from "@/src/redux/features/auth/authSlice";
+import { AppDispatch } from "@/src/redux/store";
 import { registerSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -24,15 +25,15 @@ const SignUpPage = () => {
   });
   const { mutate, isLoading } = useRegistration();
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (data: IRegistrationData) => {
     mutate(data, {
       onSuccess: (response) => {
         dispatch(login(response));
+        dispatch(retrieveUser(response.accessToken));
         reset();
         router.push("/");
-        toast.success(response.message);
       },
       onError: (err) => {
         toast.error(err.message);

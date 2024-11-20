@@ -24,10 +24,6 @@ export interface IProductResponse {
   product: IProduct;
 }
 
-export interface IError {
-  message: string;
-}
-
 export interface ILoginOrRegistrationResponse {
   message: string;
   accessToken: string;
@@ -45,4 +41,24 @@ export interface IRegistrationData {
 export interface ILoginData {
   email: string;
   password: string;
+}
+
+export interface IUser {
+  _id: string;
+  username: string;
+  name: string;
+  email: string;
+  image: string;
+  address: string;
+  role: string;
+}
+
+export interface IUserResponse {
+  message: string;
+  user: IUser;
+}
+
+export interface IAuthStorage {
+  accessToken: string;
+  user: IUser | null;
 }
