@@ -6,6 +6,7 @@ import { ICategory } from "@/src/interfaces";
 import { addItem } from "@/src/redux/features/cart/cartSlice";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -100,7 +101,8 @@ const ProductDetailsPage = () => {
               </button>
             </div>
           </div>
-          <button
+          <Link
+            href="/cart"
             onClick={() =>
               dispatch(
                 addItem({
@@ -112,7 +114,11 @@ const ProductDetailsPage = () => {
             className="btn btn-primary"
           >
             Add to Cart
-          </button>
+          </Link>
+          <p className="-mt-3 text-sm opacity-50">
+            Please note, the quantity is fixed once the item is added to your
+            cart. You can either proceed to checkout or continue shopping.
+          </p>
         </div>
       </section>
     </main>
