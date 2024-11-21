@@ -9,7 +9,7 @@ export const useRegistration = () => {
   const makeRegistration = async (
     registrationData: IRegistrationData
   ): Promise<ILoginOrRegistrationResponse> => {
-    const res = await fetch(`${API_BASE_URL}/users/register`, {
+    const res = await fetch(`${API_BASE_URL}/users/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

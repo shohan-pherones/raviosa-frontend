@@ -6,7 +6,7 @@ export const useLogin = () => {
   const makeLogin = async (
     loginData: ILoginData
   ): Promise<ILoginOrRegistrationResponse> => {
-    const res = await fetch(`${API_BASE_URL}/users/login`, {
+    const res = await fetch(`${API_BASE_URL}/users/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

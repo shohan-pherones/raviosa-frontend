@@ -8,8 +8,7 @@ import { loginSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -26,6 +25,9 @@ const SignInPage = () => {
   const { mutate, isLoading } = useLogin();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
+  const searchParams = useSearchParams();
+
+  const redirectPath = searchParams.get("redirect");
 
   const onSubmit = (data: ILoginData) => {
     mutate(data, {
@@ -33,7 +35,7 @@ const SignInPage = () => {
         dispatch(login(response));
         dispatch(retrieveUser(response.accessToken));
         reset();
-        router.push("/");
+        router.push(redirectPath || "/");
       },
       onError: (err) => {
         toast.error(err.message);
@@ -119,9 +121,19 @@ const SignInPage = () => {
           </button>
           <p className="mt-1">
             Don&apos;t have an account?{" "}
-            <Link href="/sign-up" className="link link-hover font-bold">
+            <button
+              type="button"
+              onClick={() =>
+                router.push(
+                  redirectPath
+                    ? `/sign-up?redirect=${redirectPath}`
+                    : "/sign-up"
+                )
+              }
+              className="link link-hover font-bold"
+            >
               Register
-            </Link>
+            </button>
           </p>
         </form>
       </section>

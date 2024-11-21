@@ -6,17 +6,25 @@ import { RootState } from "@/src/redux/store";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartPage = () => {
   const { items, subtotal, shippingCost, tax, totalPrice } = useSelector(
     (state: RootState) => state.cart
   );
+  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();
   const router = useRouter();
+  const pathname = usePathname();
 
-  const handleCheckout = () => {};
+  const handleCheckout = () => {
+    if (!user) {
+      return router.push(`/sign-in?redirect=${pathname}`);
+    }
+
+    console.log({ items, user, subtotal, shippingCost, tax, totalPrice });
+  };
 
   return (
     <main>
