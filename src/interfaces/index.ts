@@ -27,6 +27,7 @@ export interface IProductResponse {
 export interface ILoginOrRegistrationResponse {
   message: string;
   accessToken: string;
+  user: IUser;
 }
 
 export interface IRegistrationData {
@@ -53,12 +54,8 @@ export interface IUser {
   role: string;
 }
 
-export interface IUserResponse {
-  message: string;
-  user: IUser;
-}
-
 export interface IAuthStorage {
+  message: string;
   accessToken: string;
   user: IUser | null;
 }

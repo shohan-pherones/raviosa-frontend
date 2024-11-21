@@ -2,8 +2,7 @@
 
 import { useLogin } from "@/src/hooks/useLogin";
 import { ILoginData } from "@/src/interfaces";
-import { login, retrieveUser } from "@/src/redux/features/auth/authSlice";
-import { AppDispatch } from "@/src/redux/store";
+import { saveCredentials } from "@/src/redux/features/auth/authSlice";
 import { loginSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -24,7 +23,7 @@ const SignInPage = () => {
   });
   const { mutate, isLoading } = useLogin();
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const searchParams = useSearchParams();
 
   const redirectPath = searchParams.get("redirect");
@@ -32,10 +31,11 @@ const SignInPage = () => {
   const onSubmit = (data: ILoginData) => {
     mutate(data, {
       onSuccess: (response) => {
-        dispatch(login(response));
-        dispatch(retrieveUser(response.accessToken));
+        dispatch(saveCredentials(response));
         reset();
-        router.push(redirectPath || "/");
+        setTimeout(() => {
+          router.push(redirectPath || "/");
+        }, 100);
       },
       onError: (err) => {
         toast.error(err.message);

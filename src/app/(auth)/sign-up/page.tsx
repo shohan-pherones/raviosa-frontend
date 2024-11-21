@@ -2,8 +2,7 @@
 
 import { useRegistration } from "@/src/hooks/useRegistration";
 import { IRegistrationData } from "@/src/interfaces";
-import { login, retrieveUser } from "@/src/redux/features/auth/authSlice";
-import { AppDispatch } from "@/src/redux/store";
+import { saveCredentials } from "@/src/redux/features/auth/authSlice";
 import { registerSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
@@ -24,7 +23,7 @@ const SignUpPage = () => {
   });
   const { mutate, isLoading } = useRegistration();
   const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const searchParams = useSearchParams();
 
   const redirectPath = searchParams.get("redirect");
@@ -32,10 +31,11 @@ const SignUpPage = () => {
   const onSubmit = (data: IRegistrationData) => {
     mutate(data, {
       onSuccess: (response) => {
-        dispatch(login(response));
-        dispatch(retrieveUser(response.accessToken));
+        dispatch(saveCredentials(response));
         reset();
-        router.push(redirectPath || "/");
+        setTimeout(() => {
+          router.push(redirectPath || "/");
+        }, 100);
       },
       onError: (err) => {
         toast.error(err.message);
