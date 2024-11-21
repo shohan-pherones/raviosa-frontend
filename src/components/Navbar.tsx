@@ -65,7 +65,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-5">
         {user && (
-          <div className="dropdown">
+          <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="avatar mt-2">
               <div className="w-10 rounded-full">
                 <Image
