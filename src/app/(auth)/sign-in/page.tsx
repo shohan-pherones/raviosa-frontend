@@ -1,12 +1,12 @@
 "use client";
 
+import Processing from "@/src/components/Processing";
 import { useLogin } from "@/src/hooks/useLogin";
 import { ILoginData } from "@/src/interfaces";
 import { saveCredentials } from "@/src/redux/features/auth/authSlice";
 import { loginSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -114,14 +114,7 @@ const SignInPage = () => {
             type="submit"
             className="mt-3 btn btn-primary"
           >
-            {isLoading ? (
-              <span className="flex items-center gap-2 justify-center">
-                <Loader2 className="animate-spin" />
-                Processing
-              </span>
-            ) : (
-              "Submit"
-            )}
+            {isLoading ? <Processing /> : "Submit"}
           </button>
           <p className="mt-1">
             Don&apos;t have an account?{" "}

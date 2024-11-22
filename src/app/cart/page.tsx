@@ -1,12 +1,16 @@
 "use client";
 
+import Processing from "@/src/components/Processing";
 import SectionTitle from "@/src/components/SectionTitle";
+import { useCreateOrder } from "@/src/hooks/useCreateOrder";
 import { clearCart, removeItem } from "@/src/redux/features/cart/cartSlice";
 import { RootState } from "@/src/redux/store";
+import axios from "axios";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartPage = () => {
@@ -17,19 +21,35 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname();
+  const { mutate, isLoading } = useCreateOrder();
 
   const handleCheckout = () => {
     if (!user) {
       return router.push(`/sign-in?redirect=${pathname}`);
     }
 
-    console.log({ items, user, subtotal, shippingCost, tax, totalPrice });
+    const orderData = { items, user, subtotal, shippingCost, tax, totalPrice };
+
+    mutate(orderData, {
+      onSuccess: (response) => {
+        dispatch(clearCart());
+        toast.success(response.message);
+        router.push("/checkout");
+      },
+      onError: (err) => {
+        if (axios.isAxiosError(err) && err.response) {
+          toast.error(err.response.data?.message || "An error occurred");
+        } else {
+          toast.error(err.message || "An unexpected error occurred");
+        }
+      },
+    });
   };
 
   return (
     <main>
       {items.length === 0 && (
-        <section className="wrapper h-[calc(100vh-4rem)] flex flex-col gap-2 items-center justify-center text-center">
+        <section className="wrapper min-h-screen flex flex-col gap-2 items-center justify-center text-center">
           <div className="w-48 md:w-80">
             <Image
               src="/images/empty-cart.jpg"
@@ -172,8 +192,12 @@ const CartPage = () => {
                 </span>
               </p>
             </div>
-            <button onClick={handleCheckout} className="mt-5 btn btn-primary">
-              Proceed to Checkout
+            <button
+              disabled={isLoading}
+              onClick={handleCheckout}
+              className="mt-5 btn btn-primary"
+            >
+              {isLoading ? <Processing /> : "Proceed to Checkout"}
             </button>
             <p className="mt-2 text-sm opacity-50">
               Ensure all items are in your cart before proceeding. You can

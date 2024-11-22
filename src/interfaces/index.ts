@@ -61,3 +61,21 @@ export interface IAuthStorage {
   refreshToken: string;
   user: IUser | null;
 }
+
+export interface IOrderItem extends IProduct {
+  quantity: number;
+}
+
+export interface IOrder {
+  subtotal: number;
+  shippingCost: number;
+  tax: number;
+  totalPrice: number;
+  items: IOrderItem[];
+  user: IUser;
+}
+
+export interface IOrderResponse {
+  message: string;
+  order: IOrder;
+}
