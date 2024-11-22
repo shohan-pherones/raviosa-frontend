@@ -40,6 +40,14 @@ export interface IRegistrationData {
   address: string;
 }
 
+export interface IShippingData {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  paymentMethod: string;
+}
+
 export interface ILoginData {
   email: string;
   password: string;
@@ -67,15 +75,31 @@ export interface IOrderItem extends IProduct {
 }
 
 export interface IOrder {
+  _id?: string;
   subtotal: number;
   shippingCost: number;
   tax: number;
   totalPrice: number;
   items: IOrderItem[];
   user: IUser;
+  status?:
+    | "placed"
+    | "confirmed"
+    | "paid"
+    | "processing"
+    | "shipping"
+    | "shipped"
+    | "cancelled";
+  shippingDetails?: IShippingData;
 }
 
 export interface IOrderResponse {
   message: string;
   order: IOrder;
+}
+
+export interface IConfirmOrderData {
+  shippingDetails: IShippingData;
+  items: IOrderItem[];
+  orderId: string;
 }

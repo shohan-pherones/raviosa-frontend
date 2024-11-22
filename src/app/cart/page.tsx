@@ -28,13 +28,19 @@ const CartPage = () => {
       return router.push(`/sign-in?redirect=${pathname}`);
     }
 
-    const orderData = { items, user, subtotal, shippingCost, tax, totalPrice };
+    const orderData = {
+      items,
+      user,
+      subtotal,
+      shippingCost,
+      tax,
+      totalPrice,
+    };
 
     mutate(orderData, {
       onSuccess: (response) => {
-        dispatch(clearCart());
         toast.success(response.message);
-        router.push("/checkout");
+        router.push("/orders/confirm-order");
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

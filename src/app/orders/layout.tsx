@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const CheckoutLayout = ({ children }: PropsWithChildren) => {
+const OrdersLayout = ({ children }: PropsWithChildren) => {
   const [isPageLoading, setIsPageLoading] = useState<boolean>(true);
   const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
@@ -22,4 +22,4 @@ const CheckoutLayout = ({ children }: PropsWithChildren) => {
   return isPageLoading ? <AuthCallback /> : <>{children}</>;
 };
 
-export default CheckoutLayout;
+export default OrdersLayout;

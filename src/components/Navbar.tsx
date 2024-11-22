@@ -83,6 +83,9 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100/90 backdrop-blur-lg rounded-box z-[1] mt-2 w-52 p-2 shadow"
             >
               <li>
+                <Link href="/orders">My Orders</Link>
+              </li>
+              <li>
                 <button onClick={() => dispatch(logout())}>Logout</button>
               </li>
             </ul>

@@ -6,7 +6,6 @@ import { ICategory } from "@/src/interfaces";
 import { addItem } from "@/src/redux/features/cart/cartSlice";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound, useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -43,6 +42,16 @@ const ProductDetailsPage = () => {
     }
 
     setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addItem({
+        ...data.product,
+        quantity,
+      })
+    );
+    router.push("/cart");
   };
 
   return (
@@ -84,6 +93,7 @@ const ProductDetailsPage = () => {
             </h3>
             <div className="flex items-center justify-end">
               <button
+                disabled={data.product.stock === 0}
                 onClick={handleDecreaseQuantity}
                 className="btn w-14 h-10 flex items-center justify-center"
               >
@@ -93,6 +103,7 @@ const ProductDetailsPage = () => {
                 {quantity}
               </p>
               <button
+                disabled={data.product.stock === 0}
                 onClick={handleIncreaseQuantity}
                 className="btn w-14 h-10 flex items-center justify-center"
               >
@@ -104,20 +115,13 @@ const ProductDetailsPage = () => {
             <button className="btn" onClick={() => router.back()}>
               Go Back
             </button>
-            <Link
-              href="/cart"
-              onClick={() =>
-                dispatch(
-                  addItem({
-                    ...data.product,
-                    quantity,
-                  })
-                )
-              }
+            <button
+              disabled={data.product.stock === 0}
+              onClick={handleAddToCart}
               className="btn btn-primary"
             >
               Add to Cart
-            </Link>
+            </button>
           </div>
           <p className="-mt-3 text-sm opacity-50">
             Please note, the quantity is fixed once the item is added to your
