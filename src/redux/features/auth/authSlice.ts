@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 const initialState: IAuthStorage = {
   message: "",
   accessToken: "",
+  refreshToken: "",
   user: null,
 };
 
@@ -18,6 +19,7 @@ export const authSlice = createSlice({
     ) => {
       state.message = action.payload.message;
       state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
       state.user = action.payload.user;
       toast.success("You have successfully logged in!");
     },

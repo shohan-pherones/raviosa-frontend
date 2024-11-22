@@ -1,17 +1,16 @@
+import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { API_BASE_URL } from "../constants";
+import { axiosInstance } from "../lib/axiosInstance";
 import { IProductResponse } from "./../interfaces/index";
 
 export const useGetProduct = (productId?: string) => {
   const getAProduct = async (): Promise<IProductResponse> => {
-    const res = await fetch(`${API_BASE_URL}/products/${productId}`);
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch");
-    }
-
-    return res.json();
+    const res = await axiosInstance.get(
+      `${API_BASE_URL}/products/${productId}`
+    );
+    return res.data;
   };
 
   const { data, isLoading, error } = useQuery<IProductResponse, Error>(
@@ -20,8 +19,8 @@ export const useGetProduct = (productId?: string) => {
     { enabled: !!productId }
   );
 
-  if (error) {
-    toast.error(error.message);
+  if (error instanceof AxiosError) {
+    toast.error(error.response?.data?.message || "An error occurred");
   }
 
   return { data, isLoading, error };

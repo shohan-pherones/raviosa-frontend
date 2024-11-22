@@ -5,6 +5,7 @@ import { ILoginData } from "@/src/interfaces";
 import { saveCredentials } from "@/src/redux/features/auth/authSlice";
 import { loginSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -25,7 +26,6 @@ const SignInPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
-
   const redirectPath = searchParams.get("redirect");
 
   const onSubmit = (data: ILoginData) => {
@@ -38,7 +38,11 @@ const SignInPage = () => {
         }, 100);
       },
       onError: (err) => {
-        toast.error(err.message);
+        if (axios.isAxiosError(err) && err.response) {
+          toast.error(err.response.data?.message || "An error occurred");
+        } else {
+          toast.error(err.message || "An unexpected error occurred");
+        }
       },
     });
   };

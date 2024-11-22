@@ -50,7 +50,7 @@ const ProductDetailsPage = () => {
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2">
           <Image
-            src={data.product.images?.at(0) || "/images/placeholder.svg"}
+            src={data.product.image}
             alt={data.product.name}
             width={1080}
             height={1920}

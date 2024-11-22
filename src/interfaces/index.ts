@@ -8,7 +8,7 @@ export interface IProduct {
   _id: string;
   name: string;
   description: string;
-  images?: string[];
+  image: string;
   price: number;
   stock: number;
   categories: ICategory[];
@@ -27,6 +27,7 @@ export interface IProductResponse {
 export interface ILoginOrRegistrationResponse {
   message: string;
   accessToken: string;
+  refreshToken: string;
   user: IUser;
 }
 
@@ -57,5 +58,6 @@ export interface IUser {
 export interface IAuthStorage {
   message: string;
   accessToken: string;
+  refreshToken: string;
   user: IUser | null;
 }
