@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { z } from "zod";
 
 export const registerSchema = z.object({
@@ -80,3 +81,25 @@ export const orderStatusSchema = z.object({
 });
 
 export type TOrderStatus = z.infer<typeof orderStatusSchema>;
+
+export const createCategorySchema = z.object({
+  name: z.string().min(1, { message: "Category name is required." }),
+});
+
+export const createProductSchema = z.object({
+  name: z.string().min(1, { message: "Product name is required." }),
+  description: z
+    .string()
+    .min(1, { message: "Product description is required." }),
+  image: z.string().url({ message: "Invalid image url." }),
+  price: z.number().positive({ message: "Price must be a positive number." }),
+  stock: z
+    .number()
+    .int()
+    .nonnegative({ message: "Stock must be a non-negative integer." }),
+  categories: z.array(
+    z.string().refine((id) => mongoose.Types.ObjectId.isValid(id), {
+      message: "Invalid category ID format",
+    })
+  ),
+});

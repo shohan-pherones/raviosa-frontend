@@ -120,7 +120,7 @@ const CartPage = () => {
                           <div>
                             <div className="font-bold">{item.name}</div>
                             <div className="text-sm opacity-50 hidden md:block">
-                              {item.description}
+                              {item.description.substring(0, 100)}...
                             </div>
                           </div>
                         </Link>
@@ -130,7 +130,7 @@ const CartPage = () => {
                       <td>${(item.price * item.quantity).toFixed(2)}</td>
                       <td>
                         <button
-                          onClick={() => dispatch(removeItem(item._id))}
+                          onClick={() => dispatch(removeItem(item._id!))}
                           className="btn"
                         >
                           <X size={16} />

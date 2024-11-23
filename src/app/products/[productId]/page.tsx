@@ -68,17 +68,17 @@ const ProductDetailsPage = () => {
         </div>
         <div className="flex flex-col gap-5 justify-center wrapper">
           <div className="flex justify-between gap-5 items-center">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               {data.product.categories.map((category: ICategory) => (
                 <div
                   key={category._id}
-                  className="badge badge-primary badge-outline uppercase"
+                  className="badge badge-primary badge-outline uppercase whitespace-nowrap"
                 >
                   {category.name}
                 </div>
               ))}
             </div>
-            <p>
+            <p className="flex-shrink-0 whitespace-nowrap">
               Stocks:{" "}
               <span className="badge badge-primary">{data.product.stock}</span>
             </p>

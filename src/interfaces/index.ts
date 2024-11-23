@@ -1,17 +1,28 @@
 export interface ICategory {
-  _id: string;
-  name: string;
+  _id?: string;
+  name?: string;
   products?: IProduct[];
 }
 
+export interface ICategoryResponse {
+  message: string;
+  category: ICategory;
+}
+
+export interface ICategoriesResponse {
+  message: string;
+  categories: ICategory[];
+}
+
 export interface IProduct {
-  _id: string;
+  _id?: string;
   name: string;
   description: string;
   image: string;
   price: number;
   stock: number;
   categories: ICategory[];
+  orders?: IOrder[];
 }
 
 export interface IProductsResponse {

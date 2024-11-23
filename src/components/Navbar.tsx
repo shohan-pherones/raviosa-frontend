@@ -88,6 +88,15 @@ const Navbar = () => {
               {user.role === "admin" && (
                 <>
                   <li>
+                    <Link href="/admin/create/categories">Create Category</Link>
+                  </li>
+                  <li>
+                    <Link href="/admin/create/products">Create Product</Link>
+                  </li>
+                  <li>
+                    <Link href="/admin/manage/products">Manage Products</Link>
+                  </li>
+                  <li>
                     <Link href="/admin/manage/orders">Manage Orders</Link>
                   </li>
                 </>

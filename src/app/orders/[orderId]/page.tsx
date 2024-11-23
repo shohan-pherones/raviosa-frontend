@@ -5,15 +5,60 @@ import SectionTitle from "@/src/components/SectionTitle";
 import { useGetOrderDetails } from "@/src/hooks/useGetOrderDetails";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, useParams, useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { from } from "rxjs";
+import { catchError, switchMap } from "rxjs/operators";
 
-const OrderDetailsPage = () => {
-  const { orderId } = useParams();
-  const { data, isLoading } = useGetOrderDetails(orderId as string);
+const OrderDetailsPage = ({ params }: { params: { orderId: string } }) => {
+  const { data, isLoading, error } = useGetOrderDetails(params.orderId);
+  const [isDataReady, setIsDataReady] = useState(false);
   const router = useRouter();
 
-  if (isLoading) {
+  useEffect(() => {
+    if (!params.orderId || isLoading) return;
+
+    const dataStream = from(Promise.resolve(data)).pipe(
+      switchMap((orderData) => {
+        if (orderData?.orderedItems?.items?.length) {
+          return [orderData];
+        } else {
+          return [];
+        }
+      }),
+      catchError((err) => {
+        console.error("Error:", err);
+        return [];
+      })
+    );
+
+    const subscription = dataStream.subscribe({
+      next: (response) => {
+        if (response.message) {
+          setTimeout(() => {
+            setIsDataReady(true);
+          }, 1000);
+        } else {
+          setIsDataReady(false);
+        }
+      },
+      error: (err) => {
+        console.error("Error in data stream:", err);
+        setIsDataReady(false);
+      },
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [data, params.orderId, isLoading]);
+
+  if (isLoading || !isDataReady) {
     return <Loading />;
+  }
+
+  if (error) {
+    return <div>Error loading order details.</div>;
   }
 
   if (!data?.orderedItems?.items?.length) {
@@ -25,7 +70,9 @@ const OrderDetailsPage = () => {
       <section className="wrapper grid grid-cols-1 xl:grid-cols-3 gap-10 xl:min-h-screen">
         <div className="xl:col-span-2">
           <SectionTitle
-            title={`Order ID: ${String(orderId.slice(17, -1)).toUpperCase()}`}
+            title={`Order ID: ${String(
+              params.orderId.slice(17, -1)
+            ).toUpperCase()}`}
           />
           <div className="overflow-x-auto">
             <table className="table">
@@ -58,7 +105,7 @@ const OrderDetailsPage = () => {
                         <div>
                           <div className="font-bold">{item.product.name}</div>
                           <div className="text-sm opacity-50 hidden md:block">
-                            {item.product.description}
+                            {item.product.description.substring(0, 100)}...
                           </div>
                         </div>
                       </Link>

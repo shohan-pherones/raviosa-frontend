@@ -119,7 +119,7 @@ const ConfirmOrderPage = () => {
                         <div>
                           <div className="font-bold">{item.name}</div>
                           <div className="text-sm opacity-50 hidden md:block">
-                            {item.description}
+                            {item.description.substring(0, 100)}...
                           </div>
                         </div>
                       </Link>

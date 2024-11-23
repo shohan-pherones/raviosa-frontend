@@ -20,18 +20,18 @@ const Product = ({ product }: ProductProps) => {
         />
       </figure>
       <div className="card-body">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           {product.categories.map((category: ICategory) => (
             <div
               key={category._id}
-              className="badge badge-primary badge-outline uppercase"
+              className="badge badge-primary badge-outline uppercase whitespace-nowrap"
             >
               {category.name}
             </div>
           ))}
         </div>
         <h2 className="card-title">{product.name}</h2>
-        <p>{product.description}</p>
+        <p>{product.description.substring(0, 100)}...</p>
         <div className="card-actions justify-between items-center">
           <h2 className="card-title">${product.price}</h2>
           <Link href={`/products/${product._id}`} className="btn btn-primary">
