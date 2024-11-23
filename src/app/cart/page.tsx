@@ -39,8 +39,8 @@ const CartPage = () => {
 
     mutate(orderData, {
       onSuccess: (response) => {
-        toast.success(response.message);
         router.push("/orders/confirm-order");
+        toast.success(response.message);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

@@ -53,10 +53,10 @@ const ConfirmOrderPage = () => {
 
     mutate(confirmedOrderData, {
       onSuccess: (response) => {
-        dispatch(clearCart());
+        router.push("/orders/success");
         toast.success(response.message);
         setTimeout(() => {
-          router.push("/orders/success");
+          dispatch(clearCart());
         }, 100);
       },
       onError: (err) => {

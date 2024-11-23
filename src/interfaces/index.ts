@@ -91,11 +91,17 @@ export interface IOrder {
     | "shipped"
     | "cancelled";
   shippingDetails?: IShippingData;
+  createdAt?: Date;
 }
 
 export interface IOrderResponse {
   message: string;
   order: IOrder;
+}
+
+export interface IOrdersResponse {
+  message: string;
+  orders: IOrder[];
 }
 
 export interface IConfirmOrderData {
