@@ -114,3 +114,13 @@ export interface IMutateOrderStatusData {
   orderId: string;
   status: string;
 }
+
+export interface IOrderDetailsResponse {
+  message: string;
+  orderedItems: {
+    items: {
+      product: IProduct;
+      quantity: number;
+    }[];
+  };
+}

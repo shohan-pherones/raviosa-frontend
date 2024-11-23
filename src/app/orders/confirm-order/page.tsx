@@ -11,6 +11,7 @@ import { shippingSchema } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -57,7 +58,7 @@ const ConfirmOrderPage = () => {
         toast.success(response.message);
         setTimeout(() => {
           dispatch(clearCart());
-        }, 100);
+        }, 1000);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {
@@ -101,7 +102,10 @@ const ConfirmOrderPage = () => {
                 {items.map((item) => (
                   <tr key={item._id}>
                     <td>
-                      <div className="flex items-center gap-3">
+                      <Link
+                        href={`/products/${item._id}`}
+                        className="flex items-center gap-3"
+                      >
                         <div className="avatar">
                           <div className="mask mask-square h-16 w-16 md:h-20 md:w-20">
                             <Image
@@ -118,7 +122,7 @@ const ConfirmOrderPage = () => {
                             {item.description}
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </td>
                     <td>${item.price}</td>
                     <td>{item.quantity}</td>

@@ -35,7 +35,7 @@ const SignUpPage = () => {
         reset();
         setTimeout(() => {
           router.push(redirectPath || "/");
-        }, 100);
+        }, 1000);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

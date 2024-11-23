@@ -89,7 +89,11 @@ const ManageOrderTableBody = ({
                     </option>
                   ))}
                 </select>
-                <button disabled={isLoading} type="submit" className="btn">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="btn btn-primary"
+                >
                   {isLoading ? <Processing /> : "Update Status"}
                 </button>
               </div>

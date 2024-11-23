@@ -5,6 +5,7 @@ import { useGetOrdersByUserId } from "@/src/hooks/useGetOrdersByUserId";
 import { IOrder } from "@/src/interfaces";
 import { cn } from "@/src/lib/utils";
 import { format } from "date-fns";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const orderStatusColors = new Map<string, string>([
@@ -48,6 +49,7 @@ const OrderPage = () => {
                 <th>Email Address</th>
                 <th>Phone Number</th>
                 <th>Order Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -68,6 +70,14 @@ const OrderPage = () => {
                   <th className={cn(orderStatusColors.get(order.status!))}>
                     {order.status?.toUpperCase()}
                   </th>
+                  <th>
+                    <Link
+                      href={`/orders/${order._id}`}
+                      className="btn whitespace-nowrap"
+                    >
+                      View Order
+                    </Link>
+                  </th>
                 </tr>
               ))}
             </tbody>
@@ -82,6 +92,7 @@ const OrderPage = () => {
                 <th>Email Address</th>
                 <th>Phone Number</th>
                 <th>Order Status</th>
+                <th></th>
               </tr>
             </tfoot>
           </table>
