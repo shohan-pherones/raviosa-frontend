@@ -9,6 +9,7 @@ import { useMutateOrderStatus } from "../hooks/useMutateOrderStatus";
 import { IOrder } from "../interfaces";
 import { orderStatusSchema, TOrderStatus } from "../schemas";
 import Processing from "./Processing";
+import Link from "next/link";
 
 const statusOptions = [
   "placed",
@@ -63,7 +64,7 @@ const ManageOrderTableBody = ({
   return (
     <tr>
       <th>{index + 1}</th>
-      <th>{_id?.toUpperCase()}</th>
+      <th>{_id?.slice(17, -1)?.toUpperCase()}</th>
       <th>{format(new Date(createdAt!), "dd/MM/yyyy")}</th>
       <th>${totalPrice.toFixed(2)}</th>
       <th>
@@ -96,6 +97,9 @@ const ManageOrderTableBody = ({
                 >
                   {isLoading ? <Processing /> : "Update Status"}
                 </button>
+                <Link href={`/orders/${_id}`} className="btn whitespace-nowrap">
+                  View Order
+                </Link>
               </div>
             )}
           />

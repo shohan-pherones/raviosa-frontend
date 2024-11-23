@@ -56,7 +56,7 @@ const OrderPage = () => {
               {data.orders.map((order: IOrder, index: number) => (
                 <tr key={order._id}>
                   <th>{index + 1}</th>
-                  <th>{order._id?.toUpperCase()}</th>
+                  <th>{order._id?.slice(17, -1)?.toUpperCase()}</th>
                   <th>{format(order.createdAt!, "dd/MM/yyyy")}</th>
                   <th>${order.totalPrice.toFixed(2)}</th>
                   <th>

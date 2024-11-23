@@ -118,6 +118,12 @@ export interface IMutateOrderStatusData {
 export interface IOrderDetailsResponse {
   message: string;
   orderedItems: {
+    orderCosts: {
+      subtotal: number;
+      shippingCost: number;
+      tax: number;
+      totalPrice: number;
+    };
     items: {
       product: IProduct;
       quantity: number;
