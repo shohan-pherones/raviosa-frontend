@@ -109,3 +109,8 @@ export interface IConfirmOrderData {
   items: IOrderItem[];
   orderId: string;
 }
+
+export interface IMutateOrderStatusData {
+  orderId: string;
+  status: string;
+}

@@ -64,3 +64,19 @@ export const loginSchema = z.object({
         "Password must contain at least one special character (@$!%*?&).",
     }),
 });
+
+export const orderStatusSchema = z.object({
+  status: z
+    .enum([
+      "placed",
+      "confirmed",
+      "paid",
+      "processing",
+      "shipping",
+      "shipped",
+      "cancelled",
+    ])
+    .optional(),
+});
+
+export type TOrderStatus = z.infer<typeof orderStatusSchema>;

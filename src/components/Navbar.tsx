@@ -85,6 +85,13 @@ const Navbar = () => {
               <li>
                 <Link href="/orders">My Orders</Link>
               </li>
+              {user.role === "admin" && (
+                <>
+                  <li>
+                    <Link href="/admin/manage/orders">Manage Orders</Link>
+                  </li>
+                </>
+              )}
               <li>
                 <button onClick={() => dispatch(logout())}>Logout</button>
               </li>
