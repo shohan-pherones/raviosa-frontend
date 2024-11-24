@@ -105,6 +105,9 @@ const Navbar = () => {
                     <Link href="/admin/manage/products">Manage Products</Link>
                   </li>
                   <li>
+                    <Link href="/admin/manage/users">Manage Users</Link>
+                  </li>
+                  <li>
                     <Link href="/admin/manage/orders">Manage Orders</Link>
                   </li>
                 </>

@@ -72,6 +72,13 @@ export interface IUser {
   image: string;
   address: string;
   role: string;
+  orders?: IOrder[];
+  createdAt?: Date;
+}
+
+export interface IUsersResponse {
+  message: string;
+  users: IUser[];
 }
 
 export interface IAuthStorage {

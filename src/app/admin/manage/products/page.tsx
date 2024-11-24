@@ -68,7 +68,6 @@ const ManageProducts = () => {
                     >
                       Update
                     </Link>
-                    <button className="btn whitespace-nowrap">Delete</button>
                   </td>
                 </tr>
               ))}
