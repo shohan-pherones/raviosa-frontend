@@ -86,6 +86,19 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100/90 backdrop-blur-lg rounded-box z-[1] mt-2 w-52 p-2 shadow"
             >
               <li>
+                <Link
+                  href={`/users/profile/${user._id}`}
+                  className="flex flex-col items-start"
+                >
+                  <span className="whitespace-nowrap font-bold">
+                    {user.name}
+                  </span>
+                  <span className="-mt-3 opacity-50 text-xs">
+                    @{user.username}
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/orders">My Orders</Link>
               </li>
               {user.role === "admin" && (
