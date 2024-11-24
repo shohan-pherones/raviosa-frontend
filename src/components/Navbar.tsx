@@ -97,6 +97,11 @@ const Navbar = () => {
                     <Link href="/admin/create/products">Create Product</Link>
                   </li>
                   <li>
+                    <Link href="/admin/manage/categories">
+                      Manage Categories
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/admin/manage/products">Manage Products</Link>
                   </li>
                   <li>
