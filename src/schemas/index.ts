@@ -82,6 +82,12 @@ export const orderStatusSchema = z.object({
 
 export type TOrderStatus = z.infer<typeof orderStatusSchema>;
 
+export const roleSchema = z.object({
+  role: z.enum(["admin", "user"]).optional(),
+});
+
+export type TRole = z.infer<typeof roleSchema>;
+
 export const createCategorySchema = z.object({
   name: z.string().min(1, { message: "Category name is required." }),
 });
