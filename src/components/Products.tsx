@@ -4,12 +4,15 @@ import SectionTitle from "./SectionTitle";
 
 interface ProductsProps {
   products: IProduct[];
+  isBestSelling?: boolean;
 }
 
-const Products = ({ products }: ProductsProps) => {
+const Products = ({ products, isBestSelling }: ProductsProps) => {
   return (
     <section className="wrapper min-h-screen">
-      <SectionTitle title="Browse Products" />
+      <SectionTitle
+        title={isBestSelling ? "Best Selling Products" : "Browse Products"}
+      />
       <div className="grid-container">
         {products.map((product) => (
           <Product key={product._id} product={product} />

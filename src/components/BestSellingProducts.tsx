@@ -19,6 +19,7 @@ const BestSellingProducts = () => {
   return (
     <main>
       <Products
+        isBestSelling
         products={data.products
           .slice()
           .sort((a, b) => (b.orders?.length || 0) - (a.orders?.length || 0))
