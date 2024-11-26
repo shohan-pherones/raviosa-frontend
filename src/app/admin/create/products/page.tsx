@@ -17,6 +17,7 @@ const CreateProductPage = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<IProduct>({
     resolver: zodResolver(createProductSchema),
   });
@@ -31,8 +32,10 @@ const CreateProductPage = () => {
     formData.append("price", String(data.price));
     formData.append("stock", String(data.stock));
 
-    if (data.image && data.image[0]) {
-      formData.append("image", data.image[0]);
+    if (data.image instanceof File) {
+      formData.append("image", data.image);
+    } else {
+      toast.error("No valid file found for image");
     }
 
     if (data.categories && data.categories.length > 0) {
@@ -149,11 +152,15 @@ const CreateProductPage = () => {
               <span className="label-text">Image</span>
             </div>
             <input
-              {...register("image")}
               type="file"
-              accept="image/*"
+              accept=".jpg, .png, .jpeg"
               id="image"
               className="file-input file-input-bordered w-full max-w-xl"
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  setValue("image", e.target.files[0]);
+                }
+              }}
             />
             {errors.image && (
               <div className="label">

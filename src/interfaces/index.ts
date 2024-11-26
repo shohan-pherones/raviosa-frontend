@@ -18,7 +18,7 @@ export interface IProduct {
   _id?: string;
   name: string;
   description: string;
-  image: string;
+  image: string | File;
   price: number;
   stock: number;
   categories: ICategory[];
