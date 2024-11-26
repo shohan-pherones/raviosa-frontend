@@ -24,7 +24,24 @@ const CreateProductPage = () => {
   const { mutate, isLoading: isCreateProductLoading } = useCreateProduct();
 
   const onSubmit = (data: IProduct) => {
-    mutate(data, {
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("price", String(data.price));
+    formData.append("stock", String(data.stock));
+
+    if (data.image && data.image[0]) {
+      formData.append("image", data.image[0]);
+    }
+
+    if (data.categories && data.categories.length > 0) {
+      data.categories.forEach((category) => {
+        formData.append("categories[]", String(category));
+      });
+    }
+
+    mutate(formData, {
       onSuccess: (response) => {
         toast.success(response.message);
         reset();
@@ -94,7 +111,7 @@ const CreateProductPage = () => {
               <span className="label-text">Price</span>
             </div>
             <input
-              {...register("price", { valueAsNumber: true })}
+              {...register("price")}
               type="text"
               id="price"
               placeholder="Enter the price (e.g., 29.99)"
@@ -113,7 +130,7 @@ const CreateProductPage = () => {
               <span className="label-text">Stock</span>
             </div>
             <input
-              {...register("stock", { valueAsNumber: true })}
+              {...register("stock")}
               type="text"
               id="stock"
               placeholder="Enter the available stock quantity (e.g., 150)"
@@ -133,10 +150,10 @@ const CreateProductPage = () => {
             </div>
             <input
               {...register("image")}
-              type="text"
+              type="file"
+              accept="image/*"
               id="image"
-              placeholder="Enter the image URL (e.g., https://example.com/image.jpg)"
-              className="input input-bordered w-full max-w-xl"
+              className="file-input file-input-bordered w-full max-w-xl"
             />
             {errors.image && (
               <div className="label">
