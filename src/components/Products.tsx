@@ -11,7 +11,7 @@ const Products = ({ products, isBestSelling }: ProductsProps) => {
   return (
     <section className="wrapper min-h-screen">
       <SectionTitle
-        title={isBestSelling ? "Best Selling Products" : "Browse Products"}
+        title={isBestSelling ? "Best Selling Products" : "Browse All Products"}
       />
       <div className="grid-container">
         {products.map((product) => (

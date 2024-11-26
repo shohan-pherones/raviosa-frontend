@@ -9,7 +9,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const orderStatusColors = new Map<string, string>([
-  ["placed", "text-balck"],
   ["confirmed", "text-sky-500"],
   ["paid", "text-green-500"],
   ["processing", "text-yellow-500"],
@@ -42,6 +41,7 @@ const OrderPage = () => {
               <tr>
                 <th></th>
                 <th>Order ID</th>
+                <th>Customer Name</th>
                 <th>Date</th>
                 <th>Total Amount</th>
                 <th>Payment Method</th>
@@ -53,38 +53,42 @@ const OrderPage = () => {
               </tr>
             </thead>
             <tbody>
-              {data.orders.map((order: IOrder, index: number) => (
-                <tr key={order._id}>
-                  <th>{index + 1}</th>
-                  <th>{order._id?.slice(17, -1)?.toUpperCase()}</th>
-                  <th>{format(order.createdAt!, "dd/MM/yyyy")}</th>
-                  <th>${order.totalPrice.toFixed(2)}</th>
-                  <th>
-                    {order.shippingDetails?.paymentMethod
-                      .replaceAll("-", " ")
-                      .toUpperCase()}
-                  </th>
-                  <th>{order.shippingDetails?.address}</th>
-                  <th>{order.shippingDetails?.email}</th>
-                  <th>{order.shippingDetails?.phone}</th>
-                  <th className={cn(orderStatusColors.get(order.status!))}>
-                    {order.status?.toUpperCase()}
-                  </th>
-                  <th>
-                    <Link
-                      href={`/orders/${order._id}`}
-                      className="btn whitespace-nowrap"
-                    >
-                      View Order
-                    </Link>
-                  </th>
-                </tr>
-              ))}
+              {data.orders
+                .filter((order: IOrder) => order.status !== "placed")
+                .map((order: IOrder, index: number) => (
+                  <tr key={order._id}>
+                    <th>{index + 1}</th>
+                    <th>{order._id?.slice(17, -1)?.toUpperCase()}</th>
+                    <th>{order.shippingDetails?.name}</th>
+                    <th>{format(order.createdAt!, "dd/MM/yyyy")}</th>
+                    <th>${order.totalPrice.toFixed(2)}</th>
+                    <th>
+                      {order.shippingDetails?.paymentMethod
+                        .replaceAll("-", " ")
+                        .toUpperCase()}
+                    </th>
+                    <th>{order.shippingDetails?.address}</th>
+                    <th>{order.shippingDetails?.email}</th>
+                    <th>{order.shippingDetails?.phone}</th>
+                    <th className={cn(orderStatusColors.get(order.status!))}>
+                      {order.status?.toUpperCase()}
+                    </th>
+                    <th>
+                      <Link
+                        href={`/orders/${order._id}`}
+                        className="btn whitespace-nowrap"
+                      >
+                        View Order
+                      </Link>
+                    </th>
+                  </tr>
+                ))}
             </tbody>
             <tfoot>
               <tr>
                 <th></th>
                 <th>Order ID</th>
+                <th>Customer Name</th>
                 <th>Date</th>
                 <th>Total Amount</th>
                 <th>Payment Method</th>

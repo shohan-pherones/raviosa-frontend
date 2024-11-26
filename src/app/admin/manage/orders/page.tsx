@@ -3,6 +3,7 @@
 import Loading from "@/src/components/Loading";
 import ManageOrderTableBody from "@/src/components/ManageOrderTableBody";
 import { useGetAllOrders } from "@/src/hooks/useGetAllOrders";
+import { IOrder } from "@/src/interfaces";
 import { notFound } from "next/navigation";
 
 const ManageOrdersPage = () => {
@@ -31,6 +32,7 @@ const ManageOrdersPage = () => {
               <tr>
                 <th></th>
                 <th>Order ID</th>
+                <th>Customer Name</th>
                 <th>Date</th>
                 <th>Total Amount</th>
                 <th>Payment Method</th>
@@ -41,19 +43,22 @@ const ManageOrdersPage = () => {
               </tr>
             </thead>
             <tbody>
-              {data.orders.map((order, index) => (
-                <ManageOrderTableBody
-                  key={order._id}
-                  order={order}
-                  index={index}
-                  refetch={refetch}
-                />
-              ))}
+              {data.orders
+                .filter((order: IOrder) => order.status !== "placed")
+                .map((order, index) => (
+                  <ManageOrderTableBody
+                    key={order._id}
+                    order={order}
+                    index={index}
+                    refetch={refetch}
+                  />
+                ))}
             </tbody>
             <tfoot>
               <tr>
                 <th></th>
                 <th>Order ID</th>
+                <th>Customer Name</th>
                 <th>Date</th>
                 <th>Total Amount</th>
                 <th>Payment Method</th>
