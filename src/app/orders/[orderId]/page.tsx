@@ -95,7 +95,7 @@ const OrderDetailsPage = ({ params }: { params: { orderId: string } }) => {
                         <div className="avatar">
                           <div className="mask mask-square h-16 w-16 md:h-20 md:w-20">
                             <Image
-                              src={item.product.image}
+                              src={item.product.image as string}
                               alt={item.product.name}
                               width={512}
                               height={512}

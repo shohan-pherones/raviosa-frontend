@@ -110,7 +110,7 @@ const CartPage = () => {
                           <div className="avatar">
                             <div className="mask mask-square h-16 w-16 md:h-20 md:w-20">
                               <Image
-                                src={item.image}
+                                src={item.image as string}
                                 alt={item.name}
                                 width={512}
                                 height={512}
