@@ -65,6 +65,7 @@ const ManageOrderTableBody = ({
     <tr>
       <th>{index + 1}</th>
       <th>{_id?.slice(17, -1)?.toUpperCase()}</th>
+      <th>{shippingDetails?.name}</th>
       <th>{format(new Date(createdAt!), "dd/MM/yyyy")}</th>
       <th>${totalPrice.toFixed(2)}</th>
       <th>
