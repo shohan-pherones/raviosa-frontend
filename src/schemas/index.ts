@@ -97,23 +97,9 @@ export const createProductSchema = z.object({
   description: z
     .string()
     .min(1, { message: "Product description is required." }),
-  image: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, { message: "Image is required." })
-    .refine(
-      (files) => {
-        const file = files[0];
-        return file.type.startsWith("image/");
-      },
-      { message: "File must be an image." }
-    )
-    .refine(
-      (files) => {
-        const file = files[0];
-        return file.size <= 5 * 1024 * 1024;
-      },
-      { message: "Image size must be less than 5MB." }
-    ),
+  image: z.unknown().transform((value) => {
+    return value as FileList;
+  }),
   price: z
     .string()
     .refine((val) => !isNaN(parseFloat(val)), {
