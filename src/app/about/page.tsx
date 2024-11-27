@@ -1,6 +1,5 @@
 "use client";
 
-import SectionTitle from "@/src/components/SectionTitle";
 import { cn } from "@/src/lib/utils";
 import { useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
@@ -91,9 +90,11 @@ const AboutPage = () => {
           </div>
         ))}
       </section>
-      <section className="wrapper grid-container">
+      <section className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
         <div>
-          <SectionTitle title="Raviosa Cosmetics Shop" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Raviosa Cosmetics Shop
+          </h3>
           <p>
             Welcome to Raviosa Cosmetics Shop, where beauty meets excellence! We
             offer a wide range of high-quality skincare, makeup, and beauty
@@ -107,7 +108,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Product Authenticity" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Product Authenticity
+          </h3>
           <p>
             At Raviosa Cosmetics Shop, authenticity is our top priority. We are
             committed to offering only 100% genuine, high-quality beauty
@@ -122,7 +125,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Delivery Service" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Delivery Service
+          </h3>
           <p>
             Raviosa Cosmetics Shop offers fast, reliable, and secure delivery
             services to ensure your beauty essentials reach you in perfect
@@ -136,7 +141,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="User Privacy" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            User Privacy
+          </h3>
           <p>
             At Raviosa Cosmetics Shop, your privacy is of utmost importance to
             us. We are dedicated to protecting your personal information and
@@ -151,7 +158,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Ambassador Aubrey Plaza" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Ambassador Aubrey Plaza
+          </h3>
           <p>
             Raviosa Cosmetics Shop is proud to partner with the talented and
             versatile actress, Aubrey Plaza, as our brand ambassador. Known for
@@ -166,7 +175,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Privacy Policy" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Privacy Policy
+          </h3>
           <p>
             At Raviosa Cosmetics Shop, your privacy is a top priority. We are
             committed to safeguarding your personal information and ensuring a
@@ -180,7 +191,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Terms and Conditions" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Terms and Conditions
+          </h3>
           <p>
             By using Raviosa Cosmetics Shop&apos;s website and services, you
             agree to the following terms and conditions. All products are
@@ -196,7 +209,9 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <SectionTitle title="Taxes and Shipping" />
+          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
+            Taxes and Shipping
+          </h3>
           <p>
             All prices listed on Raviosa Cosmetics Shop are exclusive of
             applicable taxes. Sales tax will be applied based on the shipping
