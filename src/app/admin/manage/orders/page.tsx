@@ -17,10 +17,19 @@ const ManageOrdersPage = () => {
     return notFound();
   }
 
+  const lifetimeEarnings = data.orders
+    .filter((order) => order.status === "shipped")
+    .reduce((sum, order) => (sum += order.totalPrice), 0);
+
   return (
     <main className="min-h-screen">
       <section className="wrapper">
-        <h3 className="text-2xl md:text-3xl font-bold">Manage Orders</h3>
+        <div className="flex items-center justify-between gap-5">
+          <h3 className="text-2xl md:text-3xl font-bold">Manage Orders</h3>
+          <h3 className="font-bold">
+            Lifetime Earnings: ${lifetimeEarnings.toFixed(2)}
+          </h3>
+        </div>
         <p className="text-sm opacity-50">
           Carefully review and manage the status of each order to ensure
           accuracy and prompt updates. Keeping track of all orders helps
