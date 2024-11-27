@@ -10,38 +10,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const heroItems = [
   {
     id: 1,
-    headline: "Glow Like Never Before",
+    headline: "Glow Like Red Hot Aubrey Plaza",
     description:
-      "Discover radiant skincare and makeup essentials designed to bring out your natural beauty and confidence.",
+      "Embrace your inner allure with the stunning Aubrey Plaza as our official ambassador. Unveil radiant skincare and makeup essentials that highlight your natural beauty and confidence, turning heads wherever you go.",
     image: "/images/hero-01.jpg",
   },
   {
     id: 2,
-    headline: "Where Beauty Meets Elegance",
+    headline: "Glow Like Never Before",
     description:
-      "Indulge in luxurious cosmetics crafted to enhance your features and define your unique style.",
+      "Discover radiant skincare and makeup essentials designed to bring out your natural beauty and confidence.",
     image: "/images/hero-02.jpg",
   },
   {
     id: 3,
-    headline: "Your Skin Deserves the Best",
+    headline: "Where Beauty Meets Elegance",
     description:
-      "Pamper yourself with our curated collection of high-quality products for glowing, healthy skin.",
+      "Indulge in luxurious cosmetics crafted to enhance your features and define your unique style.",
     image: "/images/hero-03.jpg",
   },
   {
     id: 4,
-    headline: "Unveil Your True Beauty",
+    headline: "Your Skin Deserves the Best",
     description:
-      "Transform your everyday look with our premium beauty and skincare collections, tailored for every occasion.",
+      "Pamper yourself with our curated collection of high-quality products for glowing, healthy skin.",
     image: "/images/hero-04.jpg",
   },
   {
     id: 5,
+    headline: "Unveil Your True Beauty",
+    description:
+      "Transform your everyday look with our premium beauty and skincare collections, tailored for every occasion.",
+    image: "/images/hero-05.jpg",
+  },
+  {
+    id: 6,
     headline: "Timeless Beauty Awaits",
     description:
       "Experience the perfect blend of science and artistry with cosmetics designed to inspire and empower.",
-    image: "/images/hero-05.jpg",
+    image: "/images/hero-06.jpg",
   },
 ];
 
