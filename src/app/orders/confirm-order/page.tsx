@@ -71,7 +71,11 @@ const ConfirmOrderPage = () => {
   };
 
   const onCancel = () => {
-    console.log("Order cancelled");
+    toast.success("Your order has been cancelled successfully.");
+    router.push("/cart");
+    setTimeout(() => {
+      dispatch(clearCart());
+    }, 1000);
   };
 
   return (
