@@ -30,7 +30,7 @@ const Categories = ({ isHome }: { isHome?: boolean }) => {
             (a, b) =>
               (b.products?.length as number) - (a.products?.length as number)
           )
-          .slice(0, 11)
+          .slice(0, isHome ? 12 : undefined)
           .map((category) => (
             <Link
               href={`/categories/${category._id}`}
