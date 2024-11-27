@@ -8,6 +8,8 @@ import ReactQueryClientProvider from "../providers/ReactQueryClientProvider";
 import ReduxStoreProvider from "../providers/ReduxStoreProvider";
 import "./globals.css";
 
+export const runtime = "edge";
+
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
