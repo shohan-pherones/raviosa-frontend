@@ -23,6 +23,7 @@ export interface IProduct {
   stock: number;
   categories: ICategory[];
   orders?: IOrder[];
+  createdAt?: string;
 }
 
 export interface IProductsResponse {
@@ -47,7 +48,7 @@ export interface IRegistrationData {
   name: string;
   email: string;
   password: string;
-  image: string;
+  image: string | File;
   address: string;
 }
 

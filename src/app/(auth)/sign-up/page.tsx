@@ -19,6 +19,7 @@ const SignUpPage = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<IRegistrationData>({
     resolver: zodResolver(registerSchema),
   });
@@ -29,7 +30,21 @@ const SignUpPage = () => {
   const redirectPath = searchParams.get("redirect");
 
   const onSubmit = (data: IRegistrationData) => {
-    mutate(data, {
+    const formData = new FormData();
+
+    formData.append("username", data.username);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("address", data.address);
+
+    if (data.image instanceof File) {
+      formData.append("image", data.image);
+    } else {
+      toast.error("No valid file found for image");
+    }
+
+    mutate(formData, {
       onSuccess: (response) => {
         dispatch(saveCredentials(response));
         reset();
@@ -151,11 +166,15 @@ const SignUpPage = () => {
               <span className="label-text">Image</span>
             </div>
             <input
-              {...register("image")}
-              type="text"
+              type="file"
+              accept=".jpg, .png, .jpeg"
               id="image"
-              placeholder="Paste your image url"
-              className="input input-bordered w-full"
+              className="file-input file-input-bordered w-full max-w-xl"
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  setValue("image", e.target.files[0]);
+                }
+              }}
             />
             {errors.image && (
               <div className="label">

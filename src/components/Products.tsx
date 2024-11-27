@@ -5,13 +5,24 @@ import SectionTitle from "./SectionTitle";
 interface ProductsProps {
   products: IProduct[];
   isBestSelling?: boolean;
+  isNewArrivals?: boolean;
 }
 
-const Products = ({ products, isBestSelling }: ProductsProps) => {
+const Products = ({
+  products,
+  isBestSelling,
+  isNewArrivals,
+}: ProductsProps) => {
   return (
     <section className="wrapper min-h-screen">
       <SectionTitle
-        title={isBestSelling ? "Best Selling Products" : "Browse All Products"}
+        title={
+          isBestSelling
+            ? "Best Selling Products"
+            : isNewArrivals
+            ? "New Arrivals"
+            : "Browse All Products"
+        }
       />
       <div className="grid-container">
         {products.map((product) => (
