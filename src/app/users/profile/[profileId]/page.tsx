@@ -29,6 +29,7 @@ const ProfilePage = () => {
             alt={user.name}
             width={1080}
             height={1920}
+            priority
             className="w-full h-full object-cover"
           />
         </div>

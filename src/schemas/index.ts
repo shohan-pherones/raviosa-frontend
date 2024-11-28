@@ -37,6 +37,27 @@ export const registerSchema = z.object({
     .min(5, { message: "Address must be at least 5 characters long." }),
 });
 
+export const updateUserSchema = z.object({
+  username: z
+    .string()
+    .min(3)
+    .max(30)
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message:
+        "Username should only contain letters, numbers, and underscores.",
+    }),
+  name: z.string().min(1, { message: "Name is required." }),
+  image: z
+    .any()
+    .refine((file) => file instanceof File, {
+      message: "Image must be a file.",
+    })
+    .optional(),
+  address: z
+    .string()
+    .min(5, { message: "Address must be at least 5 characters long." }),
+});
+
 export const shippingSchema = z.object({
   name: z.string().min(1, { message: "Name is required." }),
   email: z.string().email({ message: "Invalid email format." }),

@@ -52,6 +52,13 @@ export interface IRegistrationData {
   address: string;
 }
 
+export interface IUpdateUserData {
+  username: string;
+  name: string;
+  image: string | File;
+  address: string;
+}
+
 export interface IShippingData {
   name: string;
   email: string;
