@@ -6,18 +6,22 @@ interface ProductsProps {
   products: IProduct[];
   isBestSelling?: boolean;
   isNewArrivals?: boolean;
+  categoryName?: string;
 }
 
 const Products = ({
   products,
   isBestSelling,
   isNewArrivals,
+  categoryName,
 }: ProductsProps) => {
   return (
     <section className="wrapper min-h-screen">
       <SectionTitle
         title={
-          isBestSelling
+          categoryName
+            ? categoryName
+            : isBestSelling
             ? "Best Selling Products"
             : isNewArrivals
             ? "New Arrivals"

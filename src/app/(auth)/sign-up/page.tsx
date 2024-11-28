@@ -167,7 +167,7 @@ const SignUpPage = () => {
               type="file"
               accept=".jpg, .png, .jpeg"
               id="image"
-              className="file-input file-input-bordered w-full max-w-xl"
+              className="file-input file-input-bordered w-full"
               onChange={(e) => {
                 if (e.target.files && e.target.files[0]) {
                   setValue("image", e.target.files[0]);

@@ -22,7 +22,10 @@ const CategoryDetailsPage = ({
 
   return (
     <main className="min-h-screen">
-      <Products products={data.category.products} />
+      <Products
+        products={data.category.products}
+        categoryName={data.category.name}
+      />
     </main>
   );
 };
