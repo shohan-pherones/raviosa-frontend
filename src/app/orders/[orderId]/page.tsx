@@ -35,7 +35,9 @@ const OrderDetailsPage = ({ params }: { params: { orderId: string } }) => {
     const subscription = dataStream.subscribe({
       next: (response) => {
         if (response.message) {
-          setIsDataReady(true);
+          setTimeout(() => {
+            setIsDataReady(true);
+          }, 100);
         } else {
           setIsDataReady(false);
         }

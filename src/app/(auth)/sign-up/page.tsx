@@ -18,7 +18,6 @@ const SignUpPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     setValue,
   } = useForm<IRegistrationData>({
     resolver: zodResolver(registerSchema),
@@ -46,9 +45,10 @@ const SignUpPage = () => {
 
     mutate(formData, {
       onSuccess: (response) => {
-        reset();
         dispatch(saveCredentials(response));
-        router.push(redirectPath || "/");
+        setTimeout(() => {
+          router.push(redirectPath || "/");
+        }, 100);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

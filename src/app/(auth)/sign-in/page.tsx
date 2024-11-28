@@ -18,7 +18,6 @@ const SignInPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<ILoginData>({
     resolver: zodResolver(loginSchema),
   });
@@ -31,9 +30,10 @@ const SignInPage = () => {
   const onSubmit = (data: ILoginData) => {
     mutate(data, {
       onSuccess: (response) => {
-        reset();
         dispatch(saveCredentials(response));
-        router.push(redirectPath || "/");
+        setTimeout(() => {
+          router.push(redirectPath || "/");
+        }, 100);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

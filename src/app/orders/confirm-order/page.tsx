@@ -54,9 +54,11 @@ const ConfirmOrderPage = () => {
 
     mutate(confirmedOrderData, {
       onSuccess: (response) => {
-        dispatch(clearCart());
-        router.push("/orders/success");
         toast.success(response.message);
+        dispatch(clearCart());
+        setTimeout(() => {
+          router.push("/orders/success");
+        }, 100);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {
