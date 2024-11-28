@@ -79,17 +79,29 @@ To run this project, add the following environment variables to their respective
 ### Backend
 
 `NODE_ENV`
+
 `PORT`
+
 `MONGODB_URI`
+
 `JWT_ACCESS_SECRET`
+
 `JWT_REFRESH_SECRET`
+
 `JWT_ACCESS_EXPIRES_IN`
+
 `JWT_REFRESH_EXPIRES_IN`
+
 `FRONTEND_BASE_URL`
 
 ### Frontend
 
 `NEXT_PUBLIC_API_BASE_URL`
+
+## Deployments
+
+- **Cloudflare Pages**: <https://raviosa-frontend.pages.dev>
+- **Vercel**: <https://raviosa-frontend.vercel.app>
 
 ## Feedback
 
