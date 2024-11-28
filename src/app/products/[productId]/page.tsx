@@ -59,12 +59,12 @@ const ProductDetailsPage = () => {
   return (
     <main>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <div className="overflow-hidden">
+        <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2 overflow-hidden">
           <motion.div
             initial="hidden"
             whileInView="visible"
             variants={scaleDown(0, 1)}
-            className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2"
+            className="w-full h-full"
           >
             <Image
               src={data.product.image as string}
