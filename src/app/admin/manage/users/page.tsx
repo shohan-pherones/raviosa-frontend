@@ -2,22 +2,28 @@
 
 import Loading from "@/src/components/Loading";
 import Processing from "@/src/components/Processing";
+import { useChangeRole } from "@/src/hooks/useChangeRole";
 import { useGetUsers } from "@/src/hooks/useGetUsers";
 import { cn } from "@/src/lib/utils";
 import { roleSchema, TRole } from "@/src/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { format } from "date-fns";
 import { X } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const ManageUsersPage = () => {
   const [activeUser, setActiveUser] = useState<string | null>(null);
-  const { data, isLoading } = useGetUsers();
   const { handleSubmit, control, reset } = useForm<TRole>({
     resolver: zodResolver(roleSchema),
   });
+  const { data, isLoading, refetch } = useGetUsers();
+  const { mutate, isLoading: isChangeRoleLoading } = useChangeRole(
+    activeUser as string
+  );
 
   if (isLoading) {
     return <Loading />;
@@ -28,9 +34,21 @@ const ManageUsersPage = () => {
   }
 
   const onSubmit = (formData: TRole) => {
-    setActiveUser(null);
-    reset();
-    console.log(formData);
+    mutate(formData, {
+      onSuccess: (response) => {
+        toast.success(response.message);
+        setActiveUser(null);
+        reset();
+        refetch();
+      },
+      onError: (err) => {
+        if (axios.isAxiosError(err) && err.response) {
+          toast.error(err.response.data?.message || "An error occurred");
+        } else {
+          toast.error(err.message || "An unexpected error occurred");
+        }
+      },
+    });
   };
 
   return (
@@ -124,11 +142,11 @@ const ManageUsersPage = () => {
                     ))}
                   </select>
                   <button
-                    disabled={isLoading}
+                    disabled={isChangeRoleLoading}
                     type="submit"
                     className="btn btn-primary"
                   >
-                    {isLoading ? <Processing /> : "Update"}
+                    {isChangeRoleLoading ? <Processing /> : "Update"}
                   </button>
                 </div>
               )}

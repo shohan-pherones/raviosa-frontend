@@ -11,7 +11,7 @@ export const useGetUsers = () => {
     return res.data;
   };
 
-  const { data, isLoading, error } = useQuery<IUsersResponse, Error>(
+  const { data, isLoading, error, refetch } = useQuery<IUsersResponse, Error>(
     "fetchUsers",
     getAllUsers
   );
@@ -20,5 +20,5 @@ export const useGetUsers = () => {
     toast.error(error.response?.data?.message || "An error occurred");
   }
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };

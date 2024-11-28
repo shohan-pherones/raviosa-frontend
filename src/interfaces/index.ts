@@ -89,6 +89,11 @@ export interface IUsersResponse {
   users: IUser[];
 }
 
+export interface IUserResponse {
+  message: string;
+  user: IUser;
+}
+
 export interface IAuthStorage {
   message: string;
   accessToken: string;
