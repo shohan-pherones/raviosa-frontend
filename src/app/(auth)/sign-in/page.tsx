@@ -31,11 +31,9 @@ const SignInPage = () => {
   const onSubmit = (data: ILoginData) => {
     mutate(data, {
       onSuccess: (response) => {
-        dispatch(saveCredentials(response));
         reset();
-        setTimeout(() => {
-          router.push(redirectPath || "/");
-        }, 1000);
+        dispatch(saveCredentials(response));
+        router.push(redirectPath || "/");
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {

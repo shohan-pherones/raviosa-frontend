@@ -18,9 +18,12 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
 const ConfirmOrderPage = () => {
-  const { data, isLoading } = useGetOrderForConfirm();
   const items = useSelector((state: RootState) => state.cart.items);
   const user = useSelector((state: RootState) => state.auth.user);
+  const { data, isLoading } = useGetOrderForConfirm();
+  const { mutate, isLoading: isConfirmLoading } = useConfirmOrder();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -33,32 +36,27 @@ const ConfirmOrderPage = () => {
       address: user?.address,
     },
   });
-  const { mutate, isLoading: isConfirmLoading } = useConfirmOrder();
-  const router = useRouter();
-  const dispatch = useDispatch();
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (!data?.order || !items.length) {
+  if (!data?.order?.totalPrice) {
     return notFound();
   }
 
   const onSubmit = (value: IShippingData) => {
     const confirmedOrderData = {
+      orderId: data.order._id!,
       shippingDetails: value,
       items,
-      orderId: data.order._id!,
     };
 
     mutate(confirmedOrderData, {
       onSuccess: (response) => {
+        dispatch(clearCart());
         router.push("/orders/success");
         toast.success(response.message);
-        setTimeout(() => {
-          dispatch(clearCart());
-        }, 1000);
       },
       onError: (err) => {
         if (axios.isAxiosError(err) && err.response) {
@@ -71,11 +69,9 @@ const ConfirmOrderPage = () => {
   };
 
   const onCancel = () => {
-    toast.success("Your order has been cancelled successfully.");
+    dispatch(clearCart());
     router.push("/cart");
-    setTimeout(() => {
-      dispatch(clearCart());
-    }, 1000);
+    toast.success("Your order has been cancelled successfully.");
   };
 
   return (
