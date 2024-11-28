@@ -5,6 +5,8 @@ import { useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/src/utils/motion";
 
 const aboutImages = [
   {
@@ -77,12 +79,36 @@ const AboutPage = () => {
             {expandedItem === item.id && (
               <div className="absolute top-0 left-0 bottom-0 right-0 w-full h-full bg-black/30">
                 <div className="wrapper h-full flex flex-col justify-center gap-5 text-neutral-content">
-                  <h3 className="text-5xl font-bold">{item.headline}</h3>
-                  <p className="hidden sm:block">{item.description}</p>
-                  <div>
-                    <Link href="/products" className="btn">
-                      Browse Products
-                    </Link>
+                  <div className="overflow-hidden">
+                    <motion.h3
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp()}
+                      className="text-5xl font-bold"
+                    >
+                      {item.headline}
+                    </motion.h3>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.p
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp(0.1)}
+                      className="hidden sm:block"
+                    >
+                      {item.description}
+                    </motion.p>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp(0.2)}
+                    >
+                      <Link href="/products" className="btn">
+                        Browse Products
+                      </Link>
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -92,9 +118,16 @@ const AboutPage = () => {
       </section>
       <section className="wrapper grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Raviosa Cosmetics Shop
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Raviosa Cosmetics Shop
+            </motion.h3>
+          </div>
           <p>
             Welcome to Raviosa Cosmetics Shop, where beauty meets excellence! We
             offer a wide range of high-quality skincare, makeup, and beauty
@@ -108,9 +141,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Product Authenticity
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Product Authenticity
+            </motion.h3>
+          </div>
           <p>
             At Raviosa Cosmetics Shop, authenticity is our top priority. We are
             committed to offering only 100% genuine, high-quality beauty
@@ -125,9 +165,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Delivery Service
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Delivery Service
+            </motion.h3>
+          </div>
           <p>
             Raviosa Cosmetics Shop offers fast, reliable, and secure delivery
             services to ensure your beauty essentials reach you in perfect
@@ -141,9 +188,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            User Privacy
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              User Privacy
+            </motion.h3>
+          </div>
           <p>
             At Raviosa Cosmetics Shop, your privacy is of utmost importance to
             us. We are dedicated to protecting your personal information and
@@ -158,9 +212,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Ambassador Aubrey Plaza
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Ambassador Aubrey Plaza
+            </motion.h3>
+          </div>
           <p>
             Raviosa Cosmetics Shop is proud to partner with the talented and
             versatile actress, Aubrey Plaza, as our brand ambassador. Known for
@@ -175,9 +236,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Privacy Policy
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Privacy Policy
+            </motion.h3>
+          </div>
           <p>
             At Raviosa Cosmetics Shop, your privacy is a top priority. We are
             committed to safeguarding your personal information and ensuring a
@@ -191,9 +259,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Terms and Conditions
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Terms and Conditions
+            </motion.h3>
+          </div>
           <p>
             By using Raviosa Cosmetics Shop&apos;s website and services, you
             agree to the following terms and conditions. All products are
@@ -209,9 +284,16 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-bold mb-2.5">
-            Taxes and Shipping
-          </h3>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold mb-2.5"
+            >
+              Taxes and Shipping
+            </motion.h3>
+          </div>
           <p>
             All prices listed on Raviosa Cosmetics Shop are exclusive of
             applicable taxes. Sales tax will be applied based on the shipping

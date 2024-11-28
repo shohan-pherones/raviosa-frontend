@@ -1,6 +1,8 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ICategory, IProduct } from "../interfaces";
+import { scaleDown } from "../utils/motion";
 
 interface ProductProps {
   product: IProduct;
@@ -9,16 +11,23 @@ interface ProductProps {
 const Product = ({ product }: ProductProps) => {
   return (
     <div className="card bg-base-100 w-full shadow">
-      <figure className="w-full h-96">
-        <Image
-          src={product.image as string}
-          alt={product.name}
-          width={1280}
-          height={720}
-          priority
-          className="w-full h-full object-cover"
-        />
-      </figure>
+      <div className="overflow-hidden">
+        <motion.figure
+          initial="hidden"
+          whileInView="visible"
+          variants={scaleDown()}
+          className="w-full h-96"
+        >
+          <Image
+            src={product.image as string}
+            alt={product.name}
+            width={1280}
+            height={720}
+            priority
+            className="w-full h-full object-cover"
+          />
+        </motion.figure>
+      </div>
       <div className="card-body">
         <div className="flex items-center gap-2 flex-wrap">
           {product.categories.map((category: ICategory) => (

@@ -10,6 +10,8 @@ import { notFound, useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import { scaleDown } from "@/src/utils/motion";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -57,14 +59,21 @@ const ProductDetailsPage = () => {
   return (
     <main>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2">
-          <Image
-            src={data.product.image as string}
-            alt={data.product.name}
-            width={1080}
-            height={1920}
-            className="w-full h-full object-cover"
-          />
+        <div className="overflow-hidden">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={scaleDown(0, 1)}
+            className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2"
+          >
+            <Image
+              src={data.product.image as string}
+              alt={data.product.name}
+              width={1080}
+              height={1920}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
         <div className="flex flex-col gap-5 justify-center wrapper">
           <div className="flex justify-between gap-5 items-center">

@@ -6,6 +6,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
+import { fadeUp } from "../utils/motion";
 
 const heroItems = [
   {
@@ -80,11 +82,37 @@ const Hero = () => {
               <div className="hero-overlay bg-opacity-60"></div>
               <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">
-                  <h1 className="mb-5 text-5xl font-bold">{item.headline}</h1>
-                  <p className="mb-5">{item.description}</p>
-                  <Link href="/products" className="btn btn-primary">
-                    Discover Premium Cosmetics
-                  </Link>
+                  <div className="overflow-hidden">
+                    <motion.h1
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp()}
+                      className="mb-5 text-5xl font-bold"
+                    >
+                      {item.headline}
+                    </motion.h1>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.p
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp(0.1)}
+                      className="mb-5"
+                    >
+                      {item.description}
+                    </motion.p>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.div
+                      initial="hidden"
+                      whileInView="visible"
+                      variants={fadeUp(0.2)}
+                    >
+                      <Link href="/products" className="btn btn-primary">
+                        Discover Premium Cosmetics
+                      </Link>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </div>
