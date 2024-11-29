@@ -4,14 +4,14 @@ import Loading from "@/src/components/Loading";
 import { useGetProduct } from "@/src/hooks/useGetProduct";
 import { ICategory } from "@/src/interfaces";
 import { addItem } from "@/src/redux/features/cart/cartSlice";
+import { scaleDown } from "@/src/utils/motion";
+import { motion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import Image from "next/image";
 import { notFound, useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
-import { scaleDown } from "@/src/utils/motion";
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();

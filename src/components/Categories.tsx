@@ -1,15 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { categoryImages } from "../constants";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { cn } from "../lib/utils";
+import { fadeUp } from "../utils/motion";
 import Loading from "./Loading";
 import SectionTitle from "./SectionTitle";
-import { motion } from "framer-motion";
-import { fadeUp } from "../utils/motion";
 
 const Categories = ({ isHome }: { isHome?: boolean }) => {
   const { data, isLoading } = useGetCategories();

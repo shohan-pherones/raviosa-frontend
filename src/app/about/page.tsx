@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@/src/lib/utils";
+import { fadeUp } from "@/src/utils/motion";
 import { useMediaQuery } from "@mantine/hooks";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { fadeUp } from "@/src/utils/motion";
 
 const aboutImages = [
   {

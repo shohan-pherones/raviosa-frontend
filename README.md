@@ -22,8 +22,6 @@ Raviosa is a cutting-edge cosmetics ecommerce platform designed to provide users
 
 - **Real-Time Updates:** React Query and RxJS enable real-time data updates, keeping users informed about the latest products and offers.
 
-- **Testing and CI/CD:** The platform uses Jest for robust testing and GitHub Actions for streamlined CI/CD pipelines.
-
 - **Containerization:** Docker and Nginx are utilized for deployment, ensuring scalability and reliability.
 
 - **Scalability and Security:** Built with a future-proof tech stack, Raviosa is designed to handle large-scale operations while maintaining the highest standards of security.
@@ -92,7 +90,11 @@ To run this project, add the following environment variables to their respective
 
 `JWT_REFRESH_EXPIRES_IN`
 
-`FRONTEND_BASE_URL`
+`CLOUDINARY_CLOUD_NAME`
+
+`CLOUDINARY_API_KEY`
+
+`CLOUDINARY_API_SECRET`
 
 ### Frontend
 

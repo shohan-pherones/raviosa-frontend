@@ -1,12 +1,12 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { motion } from "framer-motion";
 import { fadeUp } from "../utils/motion";
 
 const heroItems = [
