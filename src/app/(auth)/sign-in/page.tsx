@@ -5,8 +5,10 @@ import { useLogin } from "@/src/hooks/useLogin";
 import { ILoginData } from "@/src/interfaces";
 import { saveCredentials } from "@/src/redux/features/auth/authSlice";
 import { loginSchema } from "@/src/schemas";
+import { scaleDown } from "@/src/utils/motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -48,15 +50,22 @@ const SignInPage = () => {
   return (
     <main>
       <section className="grid grid-cols-1 md:grid-cols-2">
-        <div className="order-last md:order-first">
-          <Image
-            src="/images/login.jpg"
-            alt="Login"
-            width={1080}
-            height={1920}
-            priority
-            className="w-full h-full object-cover"
-          />
+        <div className="order-last md:order-first overflow-hidden">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={scaleDown(0, 1)}
+            className="w-full h-full"
+          >
+            <Image
+              src="/images/login.jpg"
+              alt="Login"
+              width={1080}
+              height={1920}
+              priority
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}

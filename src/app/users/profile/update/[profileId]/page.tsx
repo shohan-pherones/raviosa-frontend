@@ -13,6 +13,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { scaleDown } from "@/src/utils/motion";
 
 const UpdateProfilePage = () => {
   const { profileId } = useParams();
@@ -66,15 +68,22 @@ const UpdateProfilePage = () => {
   return (
     <main>
       <section className="grid grid-cols-1 md:grid-cols-2">
-        <div className="order-last md:order-first">
-          <Image
-            src={user?.image as string}
-            alt={user?.name as string}
-            width={1080}
-            height={1920}
-            priority
-            className="w-full h-full object-cover"
-          />
+        <div className="order-last md:order-first overflow-hidden">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={scaleDown(0, 1)}
+            className="w-full h-full"
+          >
+            <Image
+              src={user?.image as string}
+              alt={user?.name as string}
+              width={1080}
+              height={1920}
+              priority
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}

@@ -5,7 +5,9 @@ import SectionTitle from "@/src/components/SectionTitle";
 import { useCreateOrder } from "@/src/hooks/useCreateOrder";
 import { clearCart, removeItem } from "@/src/redux/features/cart/cartSlice";
 import { RootState } from "@/src/redux/store";
+import { fadeUp, scaleUp } from "@/src/utils/motion";
 import axios from "axios";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,31 +58,75 @@ const CartPage = () => {
     <main>
       {items.length === 0 && (
         <section className="wrapper min-h-screen flex flex-col gap-2 items-center justify-center text-center">
-          <div className="w-48 md:w-80">
-            <Image
-              src="/images/empty-cart.jpg"
-              alt="Empty cart"
-              width={1280}
-              height={720}
-            />
+          <div className="w-48 md:w-80 overflow-hidden">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={scaleUp(0, 1)}
+              className="w-full h-full"
+            >
+              <Image
+                src="/images/empty-cart.jpg"
+                alt="Empty cart"
+                width={1280}
+                height={720}
+              />
+            </motion.div>
           </div>
-          <h3 className="text-2xl md:text-3xl font-bold">
-            Your cart is currently empty
-          </h3>
-          <p>
-            Explore our products and find something you love to add to your
-            cart!
-          </p>
+          <div className="overflow-hidden">
+            <motion.h3
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp()}
+              className="text-2xl md:text-3xl font-bold"
+            >
+              Your cart is currently empty
+            </motion.h3>
+          </div>
+          <div className="overflow-hidden">
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeUp(0.1)}
+            >
+              Explore our products and find something you love to add to your
+              cart!
+            </motion.p>
+          </div>
           <div className="mt-5 flex items-center justify-center gap-5 flex-wrap">
-            <Link href="/products" className="btn btn-primary">
-              Browse Products
-            </Link>
-            <button onClick={() => router.back()} className="btn">
-              Go Back
-            </button>
-            <Link href="/" className="btn">
-              Back to Home
-            </Link>
+            <div className="overflow-hidden">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeUp(0.2)}
+              >
+                <Link href="/products" className="btn btn-primary">
+                  Browse Products
+                </Link>
+              </motion.div>
+            </div>
+            <div className="overflow-hidden">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeUp(0.3)}
+              >
+                <button onClick={() => router.back()} className="btn">
+                  Go Back
+                </button>
+              </motion.div>
+            </div>
+            <div className="overflow-hidden">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={fadeUp(0.4)}
+              >
+                <Link href="/" className="btn">
+                  Back to Home
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </section>
       )}

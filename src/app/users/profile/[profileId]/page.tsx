@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { scaleDown } from "@/src/utils/motion";
 
 const ProfilePage = () => {
   const { profileId } = useParams();
@@ -23,15 +25,22 @@ const ProfilePage = () => {
   return (
     <main>
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2">
-          <Image
-            src={user.image as string}
-            alt={user.name}
-            width={1080}
-            height={1920}
-            priority
-            className="w-full h-full object-cover"
-          />
+        <div className="w-full h-[calc(100vh-4rem)] order-1 md:order-first xl:col-span-2 overflow-hidden">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={scaleDown(0, 1)}
+            className="w-full h-full"
+          >
+            <Image
+              src={user.image as string}
+              alt={user.name}
+              width={1080}
+              height={1920}
+              priority
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
         </div>
         <div className="flex flex-col gap-5 justify-center wrapper">
           <h3 className="text-2xl md:text-3xl font-bold">{user.name}</h3>
