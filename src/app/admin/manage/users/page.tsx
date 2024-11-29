@@ -98,7 +98,7 @@ const ManageUsersPage = () => {
                         if (user.role === "user" || user.role === "admin") {
                           reset({ role: user.role });
                         } else {
-                          console.error("Invalid role:", user.role);
+                          toast.error(`Invalid role: ${user.role}`);
                         }
                       }}
                       className="btn btn-primary whitespace-nowrap"

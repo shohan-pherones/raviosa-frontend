@@ -11,14 +11,14 @@ export const useGetCategories = () => {
     return res.data;
   };
 
-  const { data, isLoading, error } = useQuery<ICategoriesResponse, Error>(
-    "fetchAllCategories",
-    getAllCategories
-  );
+  const { data, isLoading, error, refetch } = useQuery<
+    ICategoriesResponse,
+    Error
+  >("fetchAllCategories", getAllCategories);
 
   if (error instanceof AxiosError) {
     toast.error(error.response?.data?.message || "An error occurred");
   }
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, refetch };
 };
