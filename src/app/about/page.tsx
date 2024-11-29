@@ -59,7 +59,7 @@ const AboutPage = () => {
               desktop && expandedItem === item.id && "w-[calc(100vw-60rem)]",
               desktop && expandedItem !== item.id && "w-80",
               !desktop && "w-full",
-              "h-full overflow-hidden transition duration-500 relative"
+              "h-full overflow-hidden transition-['width'] duration-1000 relative"
             )}
             onMouseOver={() => setExpandedItem(item.id)}
           >
@@ -90,7 +90,7 @@ const AboutPage = () => {
                     <motion.h3
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp()}
+                      variants={fadeUp(0.6)}
                       className="text-5xl font-bold"
                     >
                       {item.headline}
@@ -100,7 +100,7 @@ const AboutPage = () => {
                     <motion.p
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(0.1)}
+                      variants={fadeUp(0.7)}
                       className="hidden sm:block"
                     >
                       {item.description}
@@ -110,7 +110,7 @@ const AboutPage = () => {
                     <motion.div
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(0.2)}
+                      variants={fadeUp(0.8)}
                     >
                       <Link href="/products" className="btn">
                         Browse Products
