@@ -64,7 +64,7 @@ const ManageProducts = () => {
                     </Link>
                     <Link
                       className="btn whitespace-nowrap"
-                      href={`/manage/products/${product._id}`}
+                      href={`/admin/manage/products/${product._id}`}
                     >
                       Update
                     </Link>

@@ -154,3 +154,15 @@ export const createProductSchema = z.object({
     })
     .optional(),
 });
+
+export const updateProductSchema = z.object({
+  name: z.string().min(1, { message: "Product name is required." }),
+  description: z
+    .string()
+    .min(1, { message: "Product description is required." }),
+  price: z.number().positive({ message: "Price must be a positive number." }),
+  stock: z
+    .number()
+    .int({ message: "Stock must be an integer." })
+    .nonnegative({ message: "Stock must be a non-negative integer." }),
+});
