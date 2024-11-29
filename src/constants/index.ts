@@ -43,7 +43,7 @@ export const categoryImages = new Map([
     "/images/Are-Feminine-Hygiene-Products-Safe-for-Treating-Vaginal-Odor_.jpg",
   ],
   ["Luxury Cosmetics", "/images/Types-of-Luxury-Private-Label-Cosmetics-.jpg"],
-  ["Hair Color & Dye", "/images/1200px-Dyed-hair-purple.png"],
+  ["Hair Color & Dye", "/images/1200px-Dyed-hair-purple.jpg"],
   ["Spa & Relaxation", "/images/spa_and_relaxation.jpg"],
   ["Makeup Removers", "/images/makeup_removers.jpg"],
 ]);
