@@ -17,9 +17,6 @@ const Footer = () => {
         <Link href="/about" className="link link-hover">
           About
         </Link>
-        <Link href="/contact" className="link link-hover">
-          Contact
-        </Link>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
