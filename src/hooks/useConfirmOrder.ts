@@ -9,7 +9,12 @@ export const useConfirmOrder = () => {
   ): Promise<IOrderResponse> => {
     const res = await axiosInstance.put(
       `${API_BASE_URL}/orders/confirm-order/${confirmOrderData.orderId}`,
-      confirmOrderData
+      confirmOrderData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     );
     return res.data;
   };
