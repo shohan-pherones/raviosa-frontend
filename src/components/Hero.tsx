@@ -87,7 +87,7 @@ const Hero = () => {
                     <motion.h1
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(0.9)}
+                      variants={fadeUp(0.6)}
                       className="mb-5 text-5xl font-bold"
                     >
                       {item.headline}
@@ -97,7 +97,7 @@ const Hero = () => {
                     <motion.p
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(1)}
+                      variants={fadeUp(0.8)}
                       className="mb-5"
                     >
                       {item.description}
@@ -107,7 +107,7 @@ const Hero = () => {
                     <motion.div
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(1.1)}
+                      variants={fadeUp(1)}
                     >
                       <Link href="/products" className="btn btn-primary">
                         Discover Premium Cosmetics
