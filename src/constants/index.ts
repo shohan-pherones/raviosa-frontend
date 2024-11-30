@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const categoryImages = new Map([
@@ -47,3 +49,46 @@ export const categoryImages = new Map([
   ["Spa & Relaxation", "/images/spa_and_relaxation.jpg"],
   ["Makeup Removers", "/images/makeup_removers.jpg"],
 ]);
+
+export const siteMetadata: Metadata = {
+  title: {
+    template: "%s | Raviosa - Premium Cosmetics & Beauty",
+    default: "Raviosa - Premium Cosmetics & Beauty",
+  },
+  description:
+    "Explore Raviosa for luxurious cosmetics and skincare essentials. Elevate your beauty routine with our curated collection of timeless and trendy products.",
+  keywords:
+    "cosmetics, premium beauty, skincare, luxury beauty products, makeup, Raviosa, beauty essentials",
+  applicationName: "Raviosa",
+  category: "cosmetics",
+  referrer: "origin-when-cross-origin",
+  authors: [
+    { name: "Md. Shohanur Rahman" },
+    { name: "Aubrey Plaza" },
+    { name: "Nisha Meherin" },
+  ],
+  creator: "Md. Shohanur Rahman",
+  publisher: "Md. Shohanur Rahman",
+  openGraph: {
+    images: "/images/hero-01.jpg",
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  appLinks: {
+    web: {
+      url: "https://raviosa-frontend.vercel.app",
+      should_fallback: true,
+    },
+  },
+};
