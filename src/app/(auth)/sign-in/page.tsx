@@ -9,13 +9,17 @@ import { scaleDown } from "@/src/utils/motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Eye, EyeClosed } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 const SignInPage = () => {
+  const [shouldPasswordVisible, setShouldPasswordVisible] =
+    useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -101,13 +105,25 @@ const SignInPage = () => {
             <div className="label">
               <span className="label-text">Password</span>
             </div>
-            <input
-              {...register("password")}
-              type="password"
-              id="password"
-              placeholder="Type your password"
-              className="input input-bordered w-full"
-            />
+            <div className="relative">
+              <input
+                {...register("password")}
+                type={shouldPasswordVisible ? "text" : "password"}
+                id="password"
+                placeholder="Type your password"
+                className="input input-bordered w-full"
+              />
+              <button
+                onClick={() => setShouldPasswordVisible(!shouldPasswordVisible)}
+                type="button"
+                aria-label={
+                  !shouldPasswordVisible ? "Show Password" : "Hide Password"
+                }
+                className="absolute top-1/2 -translate-y-1/2 right-2"
+              >
+                {!shouldPasswordVisible ? <Eye /> : <EyeClosed />}
+              </button>
+            </div>
             {errors.password && (
               <div className="label">
                 <span className="label-text-alt text-rose-500">
