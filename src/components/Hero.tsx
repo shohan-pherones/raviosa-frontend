@@ -58,6 +58,7 @@ const Hero = () => {
   return (
     <div className="h-[calc(100vh-4rem)]">
       <Swiper
+        speed={750}
         navigation={true}
         loop={true}
         grabCursor={true}
