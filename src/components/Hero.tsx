@@ -58,7 +58,7 @@ const Hero = () => {
   return (
     <div className="h-[calc(100vh-4rem)]">
       <Swiper
-        speed={750}
+        speed={1000}
         navigation={true}
         loop={true}
         grabCursor={true}
@@ -87,7 +87,7 @@ const Hero = () => {
                     <motion.h1
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp()}
+                      variants={fadeUp(0.9)}
                       className="mb-5 text-5xl font-bold"
                     >
                       {item.headline}
@@ -97,7 +97,7 @@ const Hero = () => {
                     <motion.p
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(0.1)}
+                      variants={fadeUp(1)}
                       className="mb-5"
                     >
                       {item.description}
@@ -107,7 +107,7 @@ const Hero = () => {
                     <motion.div
                       initial="hidden"
                       whileInView="visible"
-                      variants={fadeUp(0.2)}
+                      variants={fadeUp(1.1)}
                     >
                       <Link href="/products" className="btn btn-primary">
                         Discover Premium Cosmetics
